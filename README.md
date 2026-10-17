@@ -1,4 +1,4 @@
-# Đồ Án Cơ Sở Ngành - Thiết kế Front-end Website Bán Khóa Học
+# Đồ Án Cơ Sở Ngành - Thiết kế front-end cho Website bán khóa học
 
 - **Họ và tên:** Hồ Thế Lộc
 - **MSSV:** 110124109
