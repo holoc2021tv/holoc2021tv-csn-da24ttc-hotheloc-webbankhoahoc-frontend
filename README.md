@@ -1,21 +1,21 @@
 # Đồ Án Cơ Sở Ngành - Thiết kế Front-end Website Bán Khóa Học
 
-- **Họ và tên:** Hồ Thế Lộc[cite: 2]
-- **MSSV:** 110124109[cite: 2]
-- **Lớp:** DA24TTC[cite: 2]
+- **Họ và tên:** Hồ Thế Lộc
+- **MSSV:** 110124109
+- **Lớp:** DA24TTC
 - **Điện thoại:** 0372765126
 - **Email:** holoc2021.tv@gmail.com
-- **Giảng viên hướng dẫn:** ThS. Phạm Minh Đương[cite: 2]
+- **Giảng viên hướng dẫn:** ThS. Phạm Minh Đương
 
 ---
 
 ## 1. Giới thiệu đề tài
-Đề tài tập trung xây dựng hệ thống giao diện front-end cho website bán khóa học trực tuyến với các tính năng tương tác mượt mà phía client[cite: 5]. Hệ thống cung cấp các trang chính bao gồm trang chủ, danh sách khóa học, chi tiết khóa học, giỏ hàng, thanh toán giả lập, đăng nhập/đăng ký, giới thiệu và liên hệ[cite: 5].
+Đề tài tập trung xây dựng hệ thống giao diện front-end cho website bán khóa học trực tuyến với các tính năng tương tác mượt mà phía client. Hệ thống cung cấp các trang chính bao gồm trang chủ, danh sách khóa học, chi tiết khóa học, giỏ hàng, thanh toán giả lập, đăng nhập/đăng ký, giới thiệu và liên hệ.
 
 ## 2. Công nghệ sử dụng
-- **Ngôn ngữ nền tảng:** HTML, CSS, JavaScript[cite: 6]
-- **Giao diện:** Bootstrap[cite: 5]
-- **Lưu trữ dữ liệu tạm thời:** `localStorage` (quản lý giỏ hàng và thông tin người dùng trực tiếp trên trình duyệt)[cite: 6]
+- **Ngôn ngữ nền tảng:** HTML, CSS, JavaScript
+- **Giao diện:** Bootstrap
+- **Lưu trữ dữ liệu tạm thời:** `localStorage` (quản lý giỏ hàng và thông tin người dùng trực tiếp trên trình duyệt)
 - **Công cụ quản lý & Triển khai:** Visual Studio Code, Git, GitHub (GitHub Pages)[cite: 2, 6]
 
 ## 3. Cấu trúc thư mục dự án
