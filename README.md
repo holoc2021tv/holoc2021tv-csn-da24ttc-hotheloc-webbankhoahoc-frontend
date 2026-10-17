@@ -10,13 +10,13 @@
 ---
 
 ## 1. Giới thiệu đề tài
-Đề tài tập trung xây dựng hệ thống giao diện front-end cho website bán khóa học trực tuyến với các tính năng tương tác mượt mà phía client. Hệ thống cung cấp các trang chính bao gồm trang chủ, danh sách khóa học, chi tiết khóa học, giỏ hàng, thanh toán giả lập, đăng nhập/đăng ký, giới thiệu và liên hệ.
+Đề tài tập trung xây dựng hệ thống giao diện front-end cho website bán khóa học trực tuyến. Hệ thống cung cấp các trang chính bao gồm trang chủ, danh sách khóa học, chi tiết khóa học, giỏ hàng, thanh toán giả lập, đăng nhập/đăng ký, giới thiệu và liên hệ.
 
 ## 2. Công nghệ sử dụng
 - **Ngôn ngữ nền tảng:** HTML, CSS, JavaScript
 - **Giao diện:** Bootstrap
 - **Lưu trữ dữ liệu tạm thời:** `localStorage` (quản lý giỏ hàng và thông tin người dùng trực tiếp trên trình duyệt)
-- **Công cụ quản lý & Triển khai:** Visual Studio Code, Git, GitHub (GitHub Pages)[cite: 2, 6]
+- **Công cụ quản lý & Triển khai:** Visual Studio Code, Git, GitHub (GitHub Pages)
 
 ## 3. Cấu trúc thư mục dự án
 ```text
