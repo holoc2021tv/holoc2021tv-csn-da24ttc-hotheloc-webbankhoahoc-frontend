@@ -19,16 +19,23 @@
 
 ## 3. Cấu trúc cây thư mục Repository
 ```text
-csn-da24ttc-hotheloc-webbankhoahoc-frontend/
-├── README.md               # Tập tin hướng dẫn và thông tin liên lạc của tác giả
-├── setup/                  # Chứa tập tin cài đặt, dữ liệu thử nghiệm của đồ án
-├── src/                    # Chứa mã nguồn (source code) và dữ liệu thử nghiệm giao diện
-├── progress-report/        # [Bắt buộc] Chứa các báo cáo tiến độ thực hiện hằng tuần
-├── thesis/                 # [Bắt buộc] Chứa tài liệu văn bản của Đồ án
-│   ├── doc/                # Chứa tài liệu dạng .DOC
-│   ├── pdf/                # Chứa tài liệu dạng .PDF
-│   ├── html/               # Chứa tài liệu dạng web
-│   └── abs/                # Chứa báo cáo Đồ án gồm báo cáo dạng .PPT, .AVI, ...
-├── refs/                   # Chứa các tài liệu, văn bản dùng để tham khảo khi thực hiện Đồ án
-├── soft/                   # Chứa các phần mềm liên quan trong quá trình thực hiện Đồ án (nếu có)
-└── docker/                 # Chứa các tập tin liên quan đến triển khai ứng dụng trên docker (nếu có)
+├── src/                  # Chứa mã nguồn (source code) và dữ liệu thử nghiệm giao diện
+│   ├── css/
+│   │   └── style.css     # Định dạng giao diện chung (CSS tùy chỉnh)
+│   ├── js/
+│   │   ├── cart.js       # Xử lý hiển thị, tính tổng tiền và xóa sản phẩm giỏ hàng
+│   │   ├── checkout.js   # Xử lý form thanh toán giả lập và ràng buộc (validate) dữ liệu
+│   │   ├── course-detail.js # Đọc ID từ URL và đổ dữ liệu chi tiết khóa học
+│   │   ├── courses.js    # Logic bộ lọc, tìm kiếm và sắp xếp danh sách khóa học
+│   │   ├── data.js       # Kho dữ liệu mảng đối tượng (Mock data) của hệ thống
+│   │   ├── home.js       # Xử lý các chức năng/hiệu ứng riêng của Trang chủ
+│   │   └── storage.js    # Các hàm giao tiếp với LocalStorage (thêm/xóa/đọc giỏ hàng)
+│   ├── about.html        # Giao diện Trang Giới thiệu
+│   ├── cart.html         # Giao diện Trang Giỏ hàng
+│   ├── checkout.html     # Giao diện Trang Thanh toán
+│   ├── contact.html      # Giao diện Trang Liên hệ
+│   ├── course-detail.html# Giao diện Trang Chi tiết khóa học
+│   ├── courses.html      # Giao diện Trang Danh sách khóa học
+│   ├── index.html        # Giao diện Trang chủ
+│   ├── login.html        # Giao diện Trang Đăng nhập
+│   └── register.html     # Giao diện Trang Đăng ký
