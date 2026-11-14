@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduCourses - Website Bán Khóa Học Trực Tuyến</title>
-    <!-- CDN Bootstrap 5.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- CDN Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <!-- File CSS tùy chỉnh -->
     <link rel="stylesheet" href="css/style.css">
     <script src="js/auth.js"></script>
 </head>
@@ -27,14 +24,14 @@
                 <div class="collapse navbar-collapse" id="mainNavbar">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active fw-semibold" href="index.html">Trang chủ</a>
-                        </li><li class="nav-item">
+                            <a class="nav-link active fw-semibold text-primary" href="index.html">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="about.html">Giới thiệu</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="courses.html">Khóa học</a>
                         </li>
-                        
                         <li class="nav-item">
                             <a class="nav-link" href="contact.html">Liên hệ</a>
                         </li>
@@ -53,39 +50,116 @@
 
     <!-- 2. NỘI DUNG CHÍNH (MAIN) -->
     <main>
-        <!-- Khu vực Banner chính (Hero Section) -->
-        <section class="bg-primary text-white py-5">
-            <div class="container py-4">
-                <div class="row align-items-center">
-                    <div class="col-lg-7 text-center text-lg-start">
-                        <h1 class="display-5 fw-bold mb-3">Nâng Tầm Kỹ Năng Công Nghệ Thông Tin</h1>
-                        <p class="lead mb-4">Hệ thống khóa học lập trình trực tuyến thực chiến, lộ trình bài bản từ cơ bản đến chuyên sâu dành cho sinh viên và lập trình viên.</p>
-                        <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
-                            <a href="courses.html" class="btn btn-light btn-lg text-primary fw-bold">Khám phá khóa học</a>
-                            <a href="about.html" class="btn btn-outline-light btn-lg">Tìm hiểu thêm</a>
+        <!-- Khu vực Banner chính / Slideshow (Hero Carousel) -->
+        <section class="bg-theme-primary text-white py-5">
+            <div class="container py-3">
+                <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row align-items-center">
+                                <div class="col-lg-7 text-center text-lg-start">
+                                    <div class="badge bg-warning text-dark fw-bold px-3 py-2 mb-3">NỀN TẢNG GIÁO DỤC SỐ TVU</div>
+                                    <h1 class="display-5 fw-bold mb-3">Nâng Tầm Kỹ Năng Công Nghệ Thông Tin</h1>
+                                    <p class="lead mb-4">Hệ thống hơn 50 khóa học lập trình trực tuyến thực chiến, lộ trình bài bản từ cơ bản đến chuyên sâu dành cho sinh viên và lập trình viên.</p>
+                                    <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
+                                        <a href="courses.html" class="btn btn-light btn-lg text-primary fw-bold">Khám phá 50+ khóa học</a>
+                                        <a href="about.html" class="btn btn-outline-light btn-lg">Tìm hiểu thêm</a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 text-center mt-4 mt-lg-0">
+                                    <i class="bi bi-laptop display-1"></i>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-5 text-center mt-4 mt-lg-0">
-                        <i class="bi bi-code-square display-1"></i>
+                        <div class="carousel-item">
+                            <div class="row align-items-center">
+                                <div class="col-lg-7 text-center text-lg-start">
+                                    <div class="badge bg-info text-dark fw-bold px-3 py-2 mb-3">HỌC TẬP CHỦ ĐỘNG 24/7</div>
+                                    <h2 class="display-5 fw-bold mb-3">Tích Hợp Video Bài Giảng & Quản Lý Tiến Độ</h2>
+                                    <p class="lead mb-4">Xem trước video giới thiệu, lưu khóa học yêu thích, thanh toán nhanh qua mã VietQR và học trực tuyến mọi lúc mọi nơi.</p>
+                                    <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
+                                        <a href="courses.html" class="btn btn-warning btn-lg text-dark fw-bold">Xem khóa học bán chạy</a>
+                                        <a href="register.html" class="btn btn-outline-light btn-lg">Đăng ký tài khoản</a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 text-center mt-4 mt-lg-0">
+                                    <i class="bi bi-play-btn display-1"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Khu vực Khóa học nổi bật (Được đổ dữ liệu tự động từ src/js/home.js) -->
+        <!-- Khu vực Danh mục Hot (Xem nhiều, Mua nhiều) -->
+        <section class="py-5 bg-white border-bottom">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-end mb-4">
+                    <div>
+                        <h2 class="fw-bold mb-1"><i class="bi bi-fire text-danger me-2"></i>Danh Mục Chuyên Ngành Hot</h2>
+                        <p class="text-muted mb-0">Các nhóm chuyên ngành có lượt quan tâm và đăng ký cao nhất</p>
+                    </div>
+                    <a href="courses.html" class="btn btn-outline-primary btn-sm">Tất cả danh mục</a>
+                </div>
+                <div id="hot-categories-container" class="row g-3"></div>
+            </div>
+        </section>
+
+        <!-- Khu vực Khóa học nổi bật -->
         <section class="py-5">
             <div class="container">
                 <div class="d-flex justify-content-between align-items-end mb-4">
                     <div>
-                        <h2 class="fw-bold mb-1">Khóa Học Nổi Bật</h2>
-                        <p class="text-muted mb-0">Các khóa học được nhiều học viên đăng ký nhất</p>
+                        <h2 class="fw-bold mb-1"><i class="bi bi-stars text-warning me-2"></i>Khóa Học Nổi Bật</h2>
+                        <p class="text-muted mb-0">Các khóa học tiêu biểu được hội đồng chuyên môn đề xuất</p>
                     </div>
                     <a href="courses.html" class="btn btn-outline-primary">Xem tất cả <i class="bi bi-arrow-right"></i></a>
                 </div>
+                <div id="featured-courses-container" class="row g-4"></div>
+            </div>
+        </section>
 
-                <!-- Vùng chứa (Container) để JavaScript render danh sách Card khóa học -->
-                <div id="featured-courses-container" class="row g-4">
-                    <!-- Dữ liệu khóa học sẽ được chèn tự động vào đây bằng JavaScript -->
+        <!-- Khu vực Khóa học bán chạy (Best Sellers) -->
+        <section class="py-5 bg-white border-top border-bottom">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-end mb-4">
+                    <div>
+                        <h2 class="fw-bold mb-1"><i class="bi bi-trophy-fill text-danger me-2"></i>Khóa Học Bán Chạy Nhất</h2>
+                        <p class="text-muted mb-0">Top khóa học có lượt xem và số lượng học viên đăng ký đông đảo nhất</p>
+                    </div>
+                    <a href="courses.html" class="btn btn-outline-danger">Khám phá thêm <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div id="bestseller-courses-container" class="row g-4"></div>
+            </div>
+        </section>
+
+        <!-- Khu vực Khóa học mới ra mắt -->
+        <section class="py-5">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-end mb-4">
+                    <div>
+                        <h2 class="fw-bold mb-1"><i class="bi bi-lightning-charge-fill text-primary me-2"></i>Khóa Học Mới Ra Mắt</h2>
+                        <p class="text-muted mb-0">Cập nhật công nghệ và xu hướng phát triển phần mềm mới nhất 2026</p>
+                    </div>
+                    <a href="courses.html" class="btn btn-outline-primary">Xem toàn bộ <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div id="new-courses-container" class="row g-4"></div>
+            </div>
+        </section>
+
+        <!-- Khu vực Khóa học Yêu thích & Đã xem gần đây -->
+        <section id="personalized-section" class="py-5 bg-white border-top d-none">
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-lg-6">
+                        <h4 class="fw-bold mb-3"><i class="bi bi-heart-fill text-danger me-2"></i>Khóa Học Yêu Thích Đã Lưu</h4>
+                        <div id="favorite-courses-container" class="row g-3"></div>
+                    </div>
+                    <div class="col-lg-6">
+                        <h4 class="fw-bold mb-3"><i class="bi bi-clock-history text-primary me-2"></i>Khóa Học Bạn Đã Xem Gần Đây</h4>
+                        <div id="recent-courses-container" class="row g-3"></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -99,14 +173,9 @@
         </div>
     </footer>
 
-    <!-- 4. NHÚNG CÁC FILE JAVASCRIPT THEO THỨ TỰ PHỤ THUỘC -->
-    <!-- Thư viện Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Lớp 1: Dữ liệu gốc -->
     <script src="js/data.js"></script>
-    <!-- Lớp 2: Tiện ích LocalStorage -->
     <script src="js/storage.js"></script>
-    <!-- Lớp 3: Logic điều khiển riêng của Trang chủ -->
     <script src="js/home.js"></script>
 </body>
 </html>

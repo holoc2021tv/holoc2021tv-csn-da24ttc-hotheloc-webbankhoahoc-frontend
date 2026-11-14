@@ -16,20 +16,20 @@
                 <a class="navbar-brand fw-bold text-primary fs-4" href="index.html">
                     <i class="bi bi-mortarboard-fill me-2"></i>EduCourses
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-                    <i class="navbar-toggler-icon"></i>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-label="Mở menu">
+                    <i class="navbar-toggler-icon d-inline-block"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="mainNavbar">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="courses.html">Khóa học</a></li>
                         <li class="nav-item"><a class="nav-link" href="about.html">Giới thiệu</a></li>
+                        <li class="nav-item"><a class="nav-link" href="courses.html">Khóa học</a></li>
                         <li class="nav-item"><a class="nav-link" href="contact.html">Liên hệ</a></li>
                     </ul>
                     <div class="d-flex align-items-center gap-3">
                         <a href="cart.html" class="btn btn-outline-primary position-relative active">
                             <i class="bi bi-cart3 me-1"></i>Giỏ hàng
-                            <div id="cart-count-badge" class="badge bg-danger rounded-pill position-absolute top-0 start-100 translate-middle">0</div>
+                            <strong id="cart-count-badge" class="badge bg-danger rounded-pill position-absolute top-0 start-100 translate-middle">0</strong>
                         </a>
                         <a href="login.html" class="btn btn-primary">Đăng nhập</a>
                     </div>
@@ -42,10 +42,10 @@
         <div class="container">
             <h2 class="fw-bold mb-4"><i class="bi bi-cart4 me-2"></i>Giỏ Hàng Của Bạn</h2>
 
-            <!-- Khối hiển thị khi giỏ hàng rỗng -->
+            <!-- Khối hiển thị khi giỏ hàng rỗng (Sử dụng class icon-empty-cart chuẩn hóa từ style.css) -->
             <div id="cart-empty-state" class="text-center py-5 d-none">
                 <div class="mb-3">
-                    <i class="bi bi-cart-x text-muted" style="font-size: 4rem;"></i>
+                    <i class="bi bi-cart-x text-muted icon-empty-cart"></i>
                 </div>
                 <h4 class="fw-bold text-secondary">Giỏ hàng của bạn đang trống</h4>
                 <p class="text-muted mb-4">Hãy chọn thêm khóa học để bắt đầu hành trình học tập nhé!</p>
@@ -111,3 +111,5 @@
     <script src="js/cart.js"></script>
 </body>
 </html>
+
+

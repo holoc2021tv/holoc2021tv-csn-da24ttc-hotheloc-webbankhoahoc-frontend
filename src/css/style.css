@@ -1,13 +1,39 @@
 /* FILE: src/css/style.css */
+/* ==========================================================================
+   1. HỆ THỐNG BIẾN CSS TOÀN CỤC (CSS VARIABLES)
+   Chỉ cần thay đổi giá trị tại :root để đổi giao diện toàn bộ Website
+   ========================================================================== */
 :root {
     --primary-color: #0d6efd;
+    --primary-hover: #0b5ed7;
+    --primary-light: #e7f1ff;
+    --secondary-color: #6c757d;
+    --accent-color: #dc3545;
+    --success-color: #198754;
+    --warning-color: #ffc107;
+    --info-color: #0dcaf0;
     --dark-bg: #212529;
-    --card-radius: 10px;
+    --light-bg: #f8f9fa;
+    --surface-bg: #ffffff;
+    --text-main: #212529;
+    --text-muted: #6c757d;
+    --border-color: #dee2e6;
+    --font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --card-radius: 12px;
+    --btn-radius: 8px;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --shadow-hover: 0 10px 24px rgba(13, 110, 253, 0.14);
+    --transition-base: all 0.25s ease;
+    --sticky-offset: 80px;
 }
 
+/* ==========================================================================
+   2. CẤU TRÚC NỀN TẢNG (BASE LAYOUT)
+   ========================================================================== */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
+    font-family: var(--font-family-base);
+    background-color: var(--light-bg);
+    color: var(--text-main);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -17,24 +43,177 @@ main {
     flex: 1;
 }
 
-/* Hiệu ứng Card khóa học */
+/* Đồng bộ màu chủ đạo theo biến CSS */
+.bg-theme-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.text-theme-primary {
+    color: var(--primary-color) !important;
+}
+
+.border-theme-primary {
+    border-color: var(--primary-color) !important;
+}
+
+/* ==========================================================================
+   3. THẺ KHÓA HỌC & DANH MỤC (COURSE CARDS & BADGES)
+   ========================================================================== */
 .course-card {
     border-radius: var(--card-radius);
+    background-color: var(--surface-bg);
     overflow: hidden;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: var(--transition-base);
 }
 
 .course-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12) !important;
+    box-shadow: var(--shadow-hover) !important;
 }
 
-.course-card img {
+.course-card img,
+.course-card-img {
     height: 180px;
     object-fit: cover;
 }
 
-/* Khung bộ lọc ở trang danh sách khóa học */
+.detail-cover-img {
+    max-height: 380px;
+    object-fit: cover;
+}
+
 .filter-sidebar {
     border-radius: var(--card-radius);
+    background-color: var(--surface-bg);
+}
+
+.category-pill {
+    border-radius: var(--card-radius);
+    transition: var(--transition-base);
+    cursor: pointer;
+}
+
+.category-pill:hover {
+    background-color: var(--primary-light);
+    border-color: var(--primary-color) !important;
+}
+
+/* ==========================================================================
+   4. TIỆN ÍCH THAY THẾ INLINE CSS (ZERO INLINE STYLE CLASSES)
+   ========================================================================== */
+/* Biểu tượng giỏ hàng rỗng hoặc trạng thái trống */
+.icon-empty-cart,
+.icon-empty-state {
+    font-size: 4rem;
+}
+
+/* Khung tóm tắt đơn hàng trượt theo màn hình */
+.sticky-summary,
+.sticky-sidebar {
+    top: var(--sticky-offset);
+}
+
+/* Ảnh thu nhỏ trong bảng Giỏ hàng */
+.cart-item-img {
+    width: 72px;
+    height: 52px;
+    object-fit: cover;
+}
+
+/* Ảnh thu nhỏ trong trang Thanh toán và Quản trị */
+.checkout-item-img,
+.admin-thumb-img {
+    width: 60px;
+    height: 45px;
+    object-fit: cover;
+}
+
+/* Giới hạn chiều rộng tiêu đề khóa học trong tóm tắt đơn hàng */
+.checkout-item-title {
+    max-width: 190px;
+}
+
+/* Bản đồ Google Maps không viền */
+.map-iframe {
+    border: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Ảnh mã QR thanh toán VietQR */
+.qr-code-img {
+    max-width: 220px;
+    border-radius: var(--card-radius);
+}
+
+/* Khung mã xác thực Captcha trang Đăng ký */
+.captcha-box {
+    letter-spacing: 6px;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    user-select: none;
+    border-radius: var(--btn-radius);
+}
+
+/* ==========================================================================
+   5. HỒ SƠ CÁ NHÂN, HỌC TẬP & TRANG QUẢN TRỊ (PROFILE, LEARNING, ADMIN)
+   ========================================================================== */
+.avatar-circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.stat-card {
+    border-radius: var(--card-radius);
+    transition: var(--transition-base);
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+}
+
+.admin-nav-pills .nav-link {
+    border-radius: var(--btn-radius);
+    color: var(--text-main);
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    transition: var(--transition-base);
+}
+
+.admin-nav-pills .nav-link.active {
+    background-color: var(--primary-color);
+    color: var(--surface-bg);
+}
+
+.progress-thin {
+    height: 8px;
+}
+
+.progress-bar-25 {
+    width: 25%;
+}
+
+.progress-bar-50 {
+    width: 50%;
+}
+
+.progress-bar-75 {
+    width: 75%;
+}
+
+.progress-bar-100 {
+    width: 100%;
+}
+
+.text-justify {
+    text-align: justify;
 }

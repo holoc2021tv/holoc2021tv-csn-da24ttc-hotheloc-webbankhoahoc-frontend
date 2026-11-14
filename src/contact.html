@@ -15,17 +15,21 @@
                 <a class="navbar-brand fw-bold text-primary fs-4" href="index.html">
                     <i class="bi bi-mortarboard-fill me-2"></i>EduCourses
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-                    <i class="navbar-toggler-icon"></i>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-label="Mở menu">
+                    <i class="navbar-toggler-icon d-inline-block"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="mainNavbar">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="courses.html">Khóa học</a></li>
                         <li class="nav-item"><a class="nav-link" href="about.html">Giới thiệu</a></li>
+                        <li class="nav-item"><a class="nav-link" href="courses.html">Khóa học</a></li>
                         <li class="nav-item"><a class="nav-link active text-primary fw-semibold" href="contact.html">Liên hệ</a></li>
                     </ul>
                     <div class="d-flex align-items-center gap-3">
+                        <a href="cart.html" class="btn btn-outline-primary position-relative">
+                            <i class="bi bi-cart3 me-1"></i>Giỏ hàng
+                            <strong id="cart-count-badge" class="badge bg-danger rounded-pill position-absolute top-0 start-100 translate-middle">0</strong>
+                        </a>
                         <a href="login.html" class="btn btn-outline-primary">Đăng nhập</a>
                         <a href="register.html" class="btn btn-primary">Đăng ký</a>
                     </div>
@@ -60,7 +64,7 @@
                                 <i class="bi bi-telephone-fill text-success fs-3 me-3"></i>
                                 <div>
                                     <h6 class="fw-bold mb-1">Số điện thoại hỗ trợ</h6>
-                                    <div class="text-secondary">0123 456 789 (Zalo/Hotline)</div>
+                                    <div class="text-secondary">0372 765 126 (Zalo/Hotline)</div>
                                 </div>
                             </div>
 
@@ -73,9 +77,9 @@
                             </div>
 
                             <hr>
-                            <!-- Nhúng Google Maps ĐH Trà Vinh -->
+                            <!-- Nhúng Google Maps ĐH Trà Vinh - Sử dụng class map-iframe thay thế Inline CSS -->
                             <div class="ratio ratio-16x9 rounded overflow-hidden shadow-sm mt-4">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.126442655768!2d106.34440627581109!3d9.923447974347716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a0175ea296facb%3A0x55def92a290586eb!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBUcsOgIFZpbmg!5e0!3m2!1svi!2s!4v1700000000000!5m2!1svi!2s" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.126442655768!2d106.34440627581109!3d9.923447974347716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a0175ea296facb%3A0x55def92a290586eb!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBUcsOgIFZpbmg!5e0!3m2!1svi!2s!4v1700000000000!5m2!1svi!2s" class="map-iframe" allowfullscreen="" loading="lazy"></iframe>
                             </div>
                         </div>
                     </div>
@@ -124,14 +128,16 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/storage.js"></script>
     <script src="js/auth.js"></script>
     <script>
-        // Xử lý gửi form giả lập
         document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
             alert("Cảm ơn bạn đã liên hệ! Tin nhắn của bạn đã được gửi đến ban quản trị.");
-            this.reset(); // Xóa trắng form sau khi gửi
+            this.reset();
         });
     </script>
 </body>
 </html>
+
