@@ -1,214 +1,219 @@
 /**
  * FILE: src/js/profile.js
- * NHIỆM VỤ: Đọc và cập nhật thông tin Hồ sơ cá nhân từ LocalStorage (EDU_CURRENT_USER & EDU_USERS).
+ * NHIEM VU: Doc va cap nhat thong tin Ho so ca nhan an toan tu LocalStorage/SessionStorage
+ * (kiem tra trang thai luu va hoan tac neu ghi phien that bai).
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    updateCartBadgeUI();
-    loadUserProfile();
-    setupProfileForm();
-    renderProfileFavorites();
+    capNhatHuyHieuGioHang();
+    var nguoiDungHienTai = layNguoiDungDangDangNhap();
+    if (!nguoiDungHienTai) {
+        luuThongBaoChoChuyenTrang('Vui lòng đăng nhập để xem và cập nhật Hồ sơ cá nhân!', 'warning');
+        window.location.href = 'login.html';
+        return;
+    }
+    taiHoSoNguoiDung();
+    ganSuKienCapNhatHoSo();
+    hienThiKhoaHocYeuThichHoSo();
 });
 
-/**
- * 1. Lấy thông tin người dùng đang đăng nhập
- */
-function getActiveUser() {
-    var raw = localStorage.getItem('EDU_CURRENT_USER');
-    if (raw) {
-        return JSON.parse(raw);
-    }
-
-    // Nếu chưa đăng nhập, hiển thị tài khoản mẫu Hồ Thế Lộc
-    return {
-        id: 'USR_SV_110124109',
-        fullName: 'Hồ Thế Lộc',
-        email: 'holoc2021.tv@gmail.com',
-        phone: '0372765126',
-        address: 'Đại học Trà Vinh (Lớp DA24TTC - MSSV: 110124109)',
-        role: 'student'
-    };
+function layNguoiDungDangDangNhap() {
+    return layNguoiDungHienTai();
 }
 
-/**
- * 2. Đổ dữ liệu người dùng lên giao diện Hồ sơ cá nhân
- */
-function loadUserProfile() {
-    var activeUser = getActiveUser();
-    var rawUsers = localStorage.getItem('EDU_USERS');
-    var users = rawUsers ? JSON.parse(rawUsers) : [];
-    var matched = activeUser;
+function taiHoSoNguoiDung() {
+    var nguoiDungHienTai = layNguoiDungDangDangNhap();
+    if (!nguoiDungHienTai) {
+        return;
+    }
 
-    // Tìm user trong mảng EDU_USERS bằng vòng lặp for
-    for (var i = 0; i < users.length; i++) {
-        if (users[i].email === activeUser.email || users[i].id === activeUser.id) {
-            matched = users[i];
+    var danhSachNguoiDung = docDuLieuJSON('EDU_USERS', []);
+    var thongTinKhop = nguoiDungHienTai;
+
+    for (var i = 0; i < danhSachNguoiDung.length; i++) {
+        if (danhSachNguoiDung[i].email === nguoiDungHienTai.email || danhSachNguoiDung[i].id === nguoiDungHienTai.id) {
+            thongTinKhop = danhSachNguoiDung[i];
             break;
         }
     }
 
-    // Lấy chữ cái đầu của Họ và Tên làm Avatar
-    var fullNameText = matched.fullName || 'Hồ Lộc';
-    var words = fullNameText.trim().split(' ');
-    var initials = 'HL';
-    if (words.length > 1) {
-        initials = (words[0].charAt(0) + words[words.length - 1].charAt(0)).toUpperCase();
-    } else {
-        initials = words[0].substring(0, 2).toUpperCase();
+    var chuoiHoTen = thongTinKhop.fullName || 'Học Viên';
+    var mangTu = chuoiHoTen.trim().split(' ');
+    var chuCaiDau = 'HV';
+    if (mangTu.length > 1) {
+        chuCaiDau = (mangTu[0].charAt(0) + mangTu[mangTu.length - 1].charAt(0)).toUpperCase();
+    } else if (mangTu[0].length > 0) {
+        chuCaiDau = mangTu[0].substring(0, 2).toUpperCase();
     }
 
-    document.getElementById('profile-avatar-text').innerHTML = initials;
-    document.getElementById('profile-display-name').innerHTML = matched.fullName || 'Hồ Thế Lộc';
-    document.getElementById('profile-display-email').innerHTML = matched.email || '';
-    document.getElementById('profile-role-badge').innerHTML = matched.role === 'admin' ? 'Quản trị viên (Admin)' : 'Học viên chính thức';
+    document.getElementById('chu-anh-dai-dien-ho-so').textContent = chuCaiDau;
+    document.getElementById('ten-hien-thi-ho-so').textContent = thongTinKhop.fullName || '';
+    document.getElementById('email-hien-thi-ho-so').textContent = thongTinKhop.email || '';
+    document.getElementById('nhan-vai-tro-ho-so').textContent =
+        (thongTinKhop.role === 'admin' && thongTinKhop.email === EMAIL_QUAN_TRI_MAC_DINH) ? 'Quản trị viên (Admin)' : 'Học viên chính thức';
 
-    document.getElementById('profile-fullname').value = matched.fullName || '';
-    document.getElementById('profile-email').value = matched.email || '';
-    document.getElementById('profile-phone').value = matched.phone || '0372765126';
-    document.getElementById('profile-address').value = matched.address || 'Đại học Trà Vinh (Lớp DA24TTC)';
+    document.getElementById('ho-ten-ho-so').value = thongTinKhop.fullName || '';
+    document.getElementById('email-ho-so').value = thongTinKhop.email || '';
+    document.getElementById('so-dien-thoai-ho-so').value = thongTinKhop.phone || '';
+    document.getElementById('dia-chi-ho-so').value = thongTinKhop.address || '';
 
-    // Đếm số đơn hàng và số khóa học đã mua từ EDU_PURCHASES bằng vòng lặp for
-    var allOrders = getAllPurchases();
-    var myOrderCount = 0;
-    var totalCoursesCount = 0;
+    var tatCaDonHang = layTatCaDonHang();
+    var soDonCuaToi = 0;
+    var tongSoKhoaHoc = 0;
 
-    for (var j = 0; j < allOrders.length; j++) {
-        var ord = allOrders[j];
-        if (!ord.customerEmail || ord.customerEmail === matched.email) {
-            myOrderCount = myOrderCount + 1;
-            if (ord.items) {
-                totalCoursesCount = totalCoursesCount + ord.items.length;
+    for (var j = 0; j < tatCaDonHang.length; j++) {
+        var don = tatCaDonHang[j];
+        if (!kiemTraTrangThaiDonHopLe(don)) {
+            continue;
+        }
+        if (don.customerEmail && thongTinKhop.email && don.customerEmail.toLowerCase() === thongTinKhop.email.toLowerCase()) {
+            soDonCuaToi = soDonCuaToi + 1;
+            if (don.items) {
+                tongSoKhoaHoc = tongSoKhoaHoc + don.items.length;
             }
         }
     }
 
-    var favCount = getFavoriteIds().length;
+    var soYeuThich = layDanhSachMaYeuThich().length;
 
-    document.getElementById('profile-stat-orders').innerHTML = myOrderCount;
-    document.getElementById('profile-stat-courses').innerHTML = totalCoursesCount;
-    document.getElementById('profile-stat-favs').innerHTML = favCount;
+    document.getElementById('thong-ke-don-hang-ho-so').textContent = String(soDonCuaToi);
+    document.getElementById('thong-ke-khoa-hoc-ho-so').textContent = String(tongSoKhoaHoc);
+    document.getElementById('thong-ke-yeu-thich-ho-so').textContent = String(soYeuThich);
 }
 
-/**
- * 3. Xử lý lưu cập nhật Hồ sơ cá nhân và Đổi mật khẩu
- */
-function setupProfileForm() {
-    var form = document.getElementById('profile-update-form');
-    var phoneInput = document.getElementById('profile-phone');
+function ganSuKienCapNhatHoSo() {
+    var bieuMauHoSo = document.getElementById('bieu-mau-cap-nhat-ho-so');
+    var oSoDienThoai = document.getElementById('so-dien-thoai-ho-so');
 
-    if (!form) {
+    if (!bieuMauHoSo) {
         return;
     }
 
-    if (phoneInput) {
-        phoneInput.addEventListener('input', function() {
-            this.value = this.value.replace(/[^0-9]/g, '');
-        });
-    }
+    ganChiChoNhapSo(oSoDienThoai);
 
-    form.addEventListener('submit', function(e) {
+    bieuMauHoSo.addEventListener('submit', function(e) {
         e.preventDefault();
 
-        var fullName = document.getElementById('profile-fullname').value.trim();
-        var email = document.getElementById('profile-email').value.trim();
-        var phone = phoneInput.value.trim();
-        var address = document.getElementById('profile-address').value.trim();
-        var newPass = document.getElementById('profile-new-password').value;
-        var confirmPass = document.getElementById('profile-confirm-password').value;
+        var hoTen = document.getElementById('ho-ten-ho-so').value.trim();
+        var email = document.getElementById('email-ho-so').value.trim();
+        var soDienThoai = oSoDienThoai.value.trim();
+        var diaChi = document.getElementById('dia-chi-ho-so').value.trim();
+        var matKhauMoi = document.getElementById('mat-khau-moi-ho-so').value;
+        var xacNhanMatKhau = document.getElementById('xac-nhan-mat-khau-moi-ho-so').value;
 
-        if (phone.length !== 10) {
-            alert('Số điện thoại không hợp lệ! Vui lòng nhập chính xác 10 chữ số.');
-            phoneInput.focus();
+        if (hoTen === '') {
+            hienThiThongBao('Họ và tên không được để trống!', 'danger');
+            document.getElementById('ho-ten-ho-so').focus();
             return;
         }
 
-        if (newPass !== '') {
-            if (newPass.length < 6) {
-                alert('Mật khẩu mới phải có tối thiểu 6 ký tự!');
+        if (soDienThoai.length !== 10) {
+            hienThiThongBao('Số điện thoại không hợp lệ! Vui lòng nhập chính xác 10 chữ số.', 'danger');
+            oSoDienThoai.focus();
+            return;
+        }
+
+        if (matKhauMoi !== '') {
+            if (matKhauMoi.length < 6) {
+                hienThiThongBao('Mật khẩu mới phải có tối thiểu 6 ký tự!', 'danger');
                 return;
             }
-            if (newPass !== confirmPass) {
-                alert('Xác nhận mật khẩu mới không khớp!');
+            if (matKhauMoi !== xacNhanMatKhau) {
+                hienThiThongBao('Xác nhận mật khẩu mới không khớp!', 'danger');
                 return;
             }
         }
 
-        var rawUsers = localStorage.getItem('EDU_USERS');
-        var users = rawUsers ? JSON.parse(rawUsers) : [];
-        var userId = 'USR_SV_110124109';
-        var userRole = 'student';
+        var ketQuaDoc = docDuLieuJSONCoTrangThai('EDU_USERS', true);
+        if (ketQuaDoc.tonTai && !ketQuaDoc.hopLe) {
+            hienThiThongBao('Dữ liệu tài khoản trong LocalStorage đang bị lỗi JSON, chưa thể cập nhật.', 'danger');
+            return;
+        }
 
-        for (var i = 0; i < users.length; i++) {
-            if (users[i].email === email) {
-                users[i].fullName = fullName;
-                users[i].phone = phone;
-                users[i].address = address;
-                if (newPass !== '') {
-                    users[i].password = newPass;
+        var banSaoUsersGoc = JSON.parse(JSON.stringify(ketQuaDoc.duLieu));
+        var danhSachNguoiDung = JSON.parse(JSON.stringify(ketQuaDoc.duLieu));
+        var maNguoiDung = 'USR_ACTIVE';
+        var vaiTro = 'student';
+
+        for (var i = 0; i < danhSachNguoiDung.length; i++) {
+            if (danhSachNguoiDung[i].email && danhSachNguoiDung[i].email.toLowerCase() === email.toLowerCase()) {
+                danhSachNguoiDung[i].fullName = hoTen;
+                danhSachNguoiDung[i].phone = soDienThoai;
+                danhSachNguoiDung[i].address = diaChi;
+                if (matKhauMoi !== '') {
+                    danhSachNguoiDung[i].password = matKhauMoi;
                 }
-                userId = users[i].id;
-                userRole = users[i].role || 'student';
+                maNguoiDung = danhSachNguoiDung[i].id;
+                vaiTro = danhSachNguoiDung[i].role || 'student';
                 break;
             }
         }
 
-        localStorage.setItem('EDU_USERS', JSON.stringify(users));
+        if (!luuDuLieuJSON('EDU_USERS', danhSachNguoiDung)) {
+            hienThiThongBao('Không thể lưu thay đổi hồ sơ vào LocalStorage (bộ nhớ đầy hoặc bị chặn).', 'danger');
+            return;
+        }
 
-        var updatedSession = {
-            id: userId,
-            fullName: fullName,
+        var phienCapNhat = {
+            id: maNguoiDung,
+            fullName: hoTen,
             email: email,
-            phone: phone,
-            address: address,
-            role: userRole
+            phone: soDienThoai,
+            address: diaChi,
+            role: vaiTro
         };
-        localStorage.setItem('EDU_CURRENT_USER', JSON.stringify(updatedSession));
 
-        document.getElementById('profile-new-password').value = '';
-        document.getElementById('profile-confirm-password').value = '';
+        var dangDungLocal = docDuLieuJSONCoTrangThai(KHOA_LUU_PHIEN_DANG_NHAP, false).tonTai;
+        if (!luuNguoiDungHienTai(phienCapNhat, dangDungLocal)) {
+            // Hoan tac EDU_USERS neu khong cap nhat duoc phien
+            luuDuLieuJSON('EDU_USERS', banSaoUsersGoc);
+            hienThiThongBao('Không thể đồng bộ phiên đăng nhập. Hệ thống đã giữ nguyên dữ liệu cũ.', 'danger');
+            return;
+        }
 
-        alert('Cập nhật thông tin hồ sơ cá nhân thành công!');
-        loadUserProfile();
-        updateNavbarAuth();
+        document.getElementById('mat-khau-moi-ho-so').value = '';
+        document.getElementById('xac-nhan-mat-khau-moi-ho-so').value = '';
+
+        hienThiThongBao('Cập nhật thông tin hồ sơ cá nhân thành công!', 'success');
+        taiHoSoNguoiDung();
+        capNhatThanhMenu();
     });
 }
 
-/**
- * 4. Hiển thị danh sách khóa học yêu thích trong trang Hồ sơ
- */
-function renderProfileFavorites() {
-    var container = document.getElementById('profile-favorites-list');
-    if (!container) {
+function hienThiKhoaHocYeuThichHoSo() {
+    var khungChua = document.getElementById('danh-sach-yeu-thich-ho-so');
+    if (!khungChua) {
         return;
     }
 
-    var favList = getFavoriteCoursesList();
-    if (favList.length === 0) {
-        var emptyHtml = '';
-        emptyHtml += '<div class="col-12">';
-        emptyHtml += '  <div class="alert alert-light border text-muted mb-0">';
-        emptyHtml += '    Bạn chưa lưu khóa học yêu thích nào. <a href="courses.html" class="fw-semibold text-decoration-none">Khám phá khóa học ngay</a>';
-        emptyHtml += '  </div>';
-        emptyHtml += '</div>';
-        container.innerHTML = emptyHtml;
+    var danhSachYeuThich = layDanhSachKhoaHocYeuThich();
+    if (danhSachYeuThich.length === 0) {
+        khungChua.className = '';
+        var maHTMLRong = '';
+        maHTMLRong += '<div class="alert alert-light border text-muted mb-0">';
+        maHTMLRong += '  Bạn chưa lưu khóa học yêu thích nào. <a href="courses.html" class="fw-semibold text-decoration-none">Khám phá khóa học ngay</a>';
+        maHTMLRong += '</div>';
+        khungChua.innerHTML = maHTMLRong;
         return;
     }
 
-    var html = '';
-    for (var i = 0; i < favList.length; i++) {
-        var c = favList[i];
-        html += '<div class="col-md-6">';
-        html += '  <div class="card border shadow-sm h-100 p-3">';
-        html += '    <div class="d-flex align-items-center gap-3">';
-        html += '      <img src="' + c.image + '" alt="' + c.title + '" class="rounded cart-item-img">';
-        html += '      <div class="overflow-hidden flex-grow-1">';
-        html += '        <a href="course-detail.html?id=' + c.id + '" class="fw-bold text-dark text-decoration-none d-block text-truncate">' + c.title + '</a>';
-        html += '        <div class="text-muted small">GV: ' + c.instructor + '</div>';
-        html += '        <div class="text-danger fw-bold">' + formatCurrencyVND(c.salePrice) + '</div>';
-        html += '      </div>';
-        html += '    </div>';
-        html += '  </div>';
-        html += '</div>';
+    khungChua.className = 'luoi-khoa-hoc-nho';
+    var maHTML = '';
+    for (var i = 0; i < danhSachYeuThich.length; i++) {
+        var khoaHoc = danhSachYeuThich[i];
+        var anhAnToan = kiemTraDuongDanAnToan(khoaHoc.image, '');
+        var maUrl = encodeURIComponent(khoaHoc.id || '');
+
+        maHTML += '<article class="card border shadow-sm h-100 p-3">';
+        maHTML += '  <div class="d-flex align-items-center gap-3">';
+        maHTML += '    <img src="' + maHoaHTML(anhAnToan) + '" alt="' + maHoaHTML(khoaHoc.title) + '" class="rounded anh-san-pham-gio-hang">';
+        maHTML += '    <div class="overflow-hidden flex-grow-1">';
+        maHTML += '      <a href="course-detail.html?id=' + maUrl + '" class="fw-bold text-dark text-decoration-none d-block text-truncate">' + maHoaHTML(khoaHoc.title) + '</a>';
+        maHTML += '      <div class="text-muted small">GV: ' + maHoaHTML(khoaHoc.instructor) + '</div>';
+        maHTML += '      <div class="text-danger fw-bold">' + maHoaHTML(dinhDangTienVND(khoaHoc.salePrice)) + '</div>';
+        maHTML += '    </div>';
+        maHTML += '  </div>';
+        maHTML += '</article>';
     }
-    container.innerHTML = html;
+    khungChua.innerHTML = maHTML;
 }

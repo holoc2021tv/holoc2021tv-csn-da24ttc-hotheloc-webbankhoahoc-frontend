@@ -1,87 +1,136 @@
 /**
  * FILE: src/js/register.js
- * NHIỆM VỤ: Xử lý form đăng ký, kiểm duyệt dữ liệu và lưu tài khoản vào LocalStorage.
+ * NHIEM VU: Xu ly form dang ky tai khoan hoc vien, kiem tra Captcha, sinh ma duy nhat va luu an toan vao EDU_USERS.
  */
 
-document.addEventListener('DOMContentLoaded', () => {
-    setupRegisterForm();
+var maXacThucDangKyHienTai = '';
+
+document.addEventListener('DOMContentLoaded', function() {
+    var phienHienTai = layNguoiDungHienTai();
+    if (phienHienTai && phienHienTai.email) {
+        window.location.replace('index.html');
+        return;
+    }
+    damBaoTaiKhoanQuanTri();
+    taoMaXacThucDangKy();
+    ganSuKienBieuMauDangKy();
 });
 
-function setupRegisterForm() {
-    const registerForm = document.getElementById('register-form');
-    const phoneInput = document.getElementById('register-phone');
-    const passwordInput = document.getElementById('register-password');
-    const confirmPasswordInput = document.getElementById('register-confirm-password');
+function taoMaXacThucDangKy() {
+    maXacThucDangKyHienTai = taoMaCaptcha(5);
+    var phanTuHienThi = document.getElementById('hien-thi-ma-xac-thuc-dang-ky');
+    if (phanTuHienThi) {
+        phanTuHienThi.textContent = maXacThucDangKyHienTai;
+    }
+}
 
-    if (!registerForm) return;
+function ganSuKienBieuMauDangKy() {
+    var bieuMauDangKy = document.getElementById('bieu-mau-dang-ky');
+    var oSoDienThoai = document.getElementById('so-dien-thoai-dang-ky');
+    var oMatKhau = document.getElementById('mat-khau-dang-ky');
+    var oXacNhanMatKhau = document.getElementById('xac-nhan-mat-khau-dang-ky');
+    var oNhapMaXacThuc = document.getElementById('o-nhap-ma-xac-thuc-dang-ky');
+    var nutDoiMa = document.getElementById('nut-doi-ma-xac-thuc-dang-ky');
 
-    // Ràng buộc số điện thoại: Tự động loại bỏ mọi ký tự không phải là số (0-9)
-    if (phoneInput) {
-        phoneInput.addEventListener('input', function () {
-            this.value = this.value.replace(/[^0-9]/g, '');
-        });
+    if (nutDoiMa) {
+        nutDoiMa.addEventListener('click', taoMaXacThucDangKy);
     }
 
-    registerForm.addEventListener('submit', (e) => {
-        e.preventDefault(); 
+    if (!bieuMauDangKy) {
+        return;
+    }
 
-        const fullName = document.getElementById('register-name').value.trim();
-        const email = document.getElementById('register-email').value.trim();
-        const phone = phoneInput.value;
-        const password = passwordInput.value;
-        const confirmPassword = confirmPasswordInput.value;
+    ganChiChoNhapSo(oSoDienThoai);
 
-        // Validate 1: Kiểm tra độ dài số điện thoại
-        if (phone.length !== 10) {
-            alert("Số điện thoại không hợp lệ! Vui lòng nhập chính xác 10 chữ số.");
-            phoneInput.focus();
+    bieuMauDangKy.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        var hoTen = document.getElementById('ho-ten-dang-ky').value.trim();
+        var email = document.getElementById('email-dang-ky').value.trim();
+        var soDienThoai = oSoDienThoai.value.trim();
+        var oDiaChi = document.getElementById('dia-chi-dang-ky');
+        var diaChi = (oDiaChi && oDiaChi.value.trim() !== '') ? oDiaChi.value.trim() : '';
+        var matKhau = oMatKhau.value;
+        var xacNhanMatKhau = oXacNhanMatKhau.value;
+
+        if (hoTen === '') {
+            hienThiThongBao('Vui lòng nhập họ và tên!', 'danger');
+            document.getElementById('ho-ten-dang-ky').focus();
             return;
         }
 
-        // Validate 2: Kiểm tra độ dài mật khẩu
-        if (password.length < 6) {
-            alert("Mật khẩu quá ngắn! Vui lòng nhập tối thiểu 6 ký tự.");
-            passwordInput.focus();
+        if (!kiemTraEmailHopLe(email)) {
+            hienThiThongBao('Địa chỉ email không đúng định dạng!', 'danger');
+            document.getElementById('email-dang-ky').focus();
             return;
         }
 
-        // Validate 3: Khớp mật khẩu
-        if (password !== confirmPassword) {
-            alert("Mật khẩu xác nhận không khớp! Vui lòng nhập lại.");
-            confirmPasswordInput.focus();
+        if (soDienThoai.length !== 10) {
+            hienThiThongBao('Số điện thoại không hợp lệ! Vui lòng nhập chính xác 10 chữ số.', 'danger');
+            oSoDienThoai.focus();
             return;
         }
 
-        // Đọc danh sách user hiện tại từ LocalStorage
-        let users = [];
-        try {
-            const storedUsers = localStorage.getItem('EDU_USERS');
-            users = storedUsers ? JSON.parse(storedUsers) : [];
-        } catch (error) {
-            users = [];
-        }
-
-        // Validate 4: Kiểm tra Email đã tồn tại chưa
-        const isEmailExist = users.some(user => user.email === email);
-        if (isEmailExist) {
-            alert("Email này đã được đăng ký! Vui lòng sử dụng email khác hoặc đăng nhập.");
-            document.getElementById('register-email').focus();
+        if (matKhau.length < 6) {
+            hienThiThongBao('Mật khẩu quá ngắn! Vui lòng nhập tối thiểu 6 ký tự.', 'danger');
+            oMatKhau.focus();
             return;
         }
 
-        // Đăng ký thành công -> Lưu vào mảng
-        const newUser = {
-            id: 'USR' + new Date().getTime(), // Tạo ID ngẫu nhiên bằng timestamp
-            fullName: fullName,
+        if (matKhau !== xacNhanMatKhau) {
+            hienThiThongBao('Mật khẩu xác nhận không khớp! Vui lòng nhập lại.', 'danger');
+            oXacNhanMatKhau.focus();
+            return;
+        }
+
+        if (oNhapMaXacThuc && oNhapMaXacThuc.value.trim().toUpperCase() !== maXacThucDangKyHienTai) {
+            hienThiThongBao('Mã xác thực Captcha không chính xác! Vui lòng nhập lại.', 'danger');
+            taoMaXacThucDangKy();
+            oNhapMaXacThuc.value = '';
+            oNhapMaXacThuc.focus();
+            return;
+        }
+
+        var ketQuaDoc = docDuLieuJSONCoTrangThai('EDU_USERS', true);
+        if (ketQuaDoc.tonTai && !ketQuaDoc.hopLe) {
+            hienThiThongBao('Dữ liệu tài khoản trong LocalStorage đang bị lỗi JSON, chưa thể đăng ký mới.', 'danger');
+            return;
+        }
+
+        var danhSachNguoiDung = ketQuaDoc.duLieu.slice();
+        var emailDaTonTai = false;
+        for (var i = 0; i < danhSachNguoiDung.length; i++) {
+            if (danhSachNguoiDung[i].email && danhSachNguoiDung[i].email.toLowerCase() === email.toLowerCase()) {
+                emailDaTonTai = true;
+                break;
+            }
+        }
+
+        if (emailDaTonTai) {
+            hienThiThongBao('Email này đã được đăng ký! Vui lòng sử dụng email khác hoặc đăng nhập.', 'danger');
+            document.getElementById('email-dang-ky').focus();
+            return;
+        }
+
+        var thoiDiemHienTai = new Date();
+        var taiKhoanMoi = {
+            id: taoMaDuyNhat('USR_', danhSachNguoiDung, 'id'),
+            fullName: hoTen,
             email: email,
-            phone: phone,
-            password: password // Lưu ý: Trong thực tế sẽ cần mã hóa hash, ở đây làm front-end ta lưu text
+            phone: soDienThoai,
+            address: diaChi,
+            password: matKhau,
+            role: 'student',
+            createdAt: thoiDiemHienTai.toLocaleDateString('vi-VN')
         };
 
-        users.push(newUser);
-        localStorage.setItem('EDU_USERS', JSON.stringify(users));
+        danhSachNguoiDung.push(taiKhoanMoi);
+        if (!luuDuLieuJSON('EDU_USERS', danhSachNguoiDung)) {
+            hienThiThongBao('Không thể lưu tài khoản mới vào LocalStorage (bộ nhớ đầy hoặc bị chặn).', 'danger');
+            return;
+        }
 
-        alert("Đăng ký tài khoản thành công! Hệ thống sẽ chuyển hướng đến trang Đăng nhập.");
+        luuThongBaoChoChuyenTrang('Đăng ký tài khoản thành công! Vui lòng đăng nhập để bắt đầu học tập.', 'success');
         window.location.href = 'login.html';
     });
 }

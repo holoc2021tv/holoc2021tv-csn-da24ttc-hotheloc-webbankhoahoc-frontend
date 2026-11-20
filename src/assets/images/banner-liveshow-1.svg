@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 380" width="640" height="380" role="img" aria-label="Live Show Lập Trình Frontend">
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#071936"/>
+      <stop offset="55%" stop-color="#0d47a1"/>
+      <stop offset="100%" stop-color="#0dcaf0"/>
+    </linearGradient>
+    <linearGradient id="cardGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="380" rx="20" fill="url(#bg1)"/>
+  <circle cx="550" cy="70" r="95" fill="#ffffff" fill-opacity="0.06"/>
+  <circle cx="90" cy="320" r="110" fill="#0dcaf0" fill-opacity="0.12"/>
+  <!-- Khung trình duyệt Live Coding -->
+  <rect x="40" y="36" width="560" height="308" rx="16" fill="url(#cardGrad1)" stroke="#38bdf8" stroke-width="2" stroke-opacity="0.45"/>
+  <rect x="40" y="36" width="560" height="38" rx="16" fill="#0f172a"/>
+  <circle cx="66" cy="55" r="6" fill="#ef4444"/>
+  <circle cx="86" cy="55" r="6" fill="#f59e0b"/>
+  <circle cx="106" cy="55" r="6" fill="#10b981"/>
+  <rect x="140" y="45" width="260" height="20" rx="6" fill="#1e293b"/>
+  <text x="155" y="59" font-family="Consolas, monospace" font-size="11" fill="#94a3b8">https://educourses.vn/live-workshop</text>
+  <!-- Huy hiệu LIVE -->
+  <rect x="495" y="44" width="85" height="22" rx="11" fill="#dc3545"/>
+  <circle cx="511" cy="55" r="4" fill="#ffffff"/>
+  <text x="522" y="59" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff">LIVE SHOW</text>
+  <!-- Nội dung code bên trái -->
+  <rect x="64" y="96" width="280" height="165" rx="10" fill="#090d16" stroke="#334155" stroke-width="1"/>
+  <text x="80" y="124" font-family="Consolas, monospace" font-size="13" fill="#38bdf8">&lt;section class="edu-live"&gt;</text>
+  <text x="96" y="148" font-family="Consolas, monospace" font-size="13" fill="#f8fafc">const <tspan fill="#fbbf24">course</tspan> = {</text>
+  <text x="112" y="170" font-family="Consolas, monospace" font-size="12" fill="#a7f3d0">stack: "HTML5, CSS3, JS",</text>
+  <text x="112" y="192" font-family="Consolas, monospace" font-size="12" fill="#a7f3d0">framework: "Bootstrap 5",</text>
+  <text x="112" y="214" font-family="Consolas, monospace" font-size="12" fill="#f472b6">storage: "LocalStorage"</text>
+  <text x="96" y="236" font-family="Consolas, monospace" font-size="13" fill="#f8fafc">};</text>
+  <text x="80" y="254" font-family="Consolas, monospace" font-size="13" fill="#38bdf8">&lt;/section&gt;</text>
+  <!-- Khối thông tin sự kiện bên phải -->
+  <rect x="364" y="96" width="212" height="165" rx="10" fill="#1e293b"/>
+  <rect x="380" y="112" width="120" height="22" rx="6" fill="#ffc107"/>
+  <text x="390" y="127" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#212529">WORKSHOP TRỰC TUYẾN</text>
+  <text x="380" y="156" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff">Thực Chiến Dự Án</text>
+  <text x="380" y="178" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#38bdf8">Web Bán Khóa Học</text>
+  <text x="380" y="204" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#cbd5e1">• Tối ưu giao diện Responsive</text>
+  <text x="380" y="224" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#cbd5e1">• Quản lý trạng thái thực tế</text>
+  <text x="380" y="244" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#cbd5e1">• Hỏi đáp trực tiếp cùng Mentor</text>
+  <!-- Thanh trạng thái dưới -->
+  <rect x="64" y="278" width="512" height="44" rx="10" fill="#0f172a"/>
+  <circle cx="90" cy="300" r="12" fill="#0d6efd"/>
+  <path d="M87 294 L96 300 L87 306 Z" fill="#ffffff"/>
+  <text x="114" y="305" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" fill="#e2e8f0">EduCourses Live Studio • Học trực tuyến tương tác đa nền tảng</text>
+</svg>

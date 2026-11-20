@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Quản Trị Hệ Thống (Admin Dashboard) - EduCourses</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom sticky-top shadow-sm">
+            <div class="container thanh-menu-dau-trang">
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <img src="assets/images/logo-light.svg" alt="EduCourses Admin Logo" class="anh-logo-thuong-hieu me-2">
+                    <div class="badge bg-warning text-dark fw-bold">ADMIN</div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#thanh-menu-chinh" aria-label="Mở menu">
+                    <i class="navbar-toggler-icon d-inline-block"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="thanh-menu-chinh">
+                    <div class="me-auto"></div>
+                    <div class="nhom-nut-menu-phai">
+                        <div class="d-inline-flex align-items-center">
+                            <a href="login.html" class="btn btn-primary btn-sm fw-semibold">Đăng nhập</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="py-4">
+        <div class="container">
+            <!-- PHẦN ĐẦU: TIÊU ĐỀ KHU VỰC QUẢN TRỊ HỆ THỐNG -->
+            <section class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+                <div>
+                    <h2 class="fw-bold mb-1"><i class="bi bi-speedometer2 text-primary me-2"></i>Quản Trị Hệ Thống</h2>
+                    <p class="text-muted small mb-0">Tổng quan thống kê số liệu thực tế và quản lý toàn bộ dữ liệu nền tảng EduCourses</p>
+                </div>
+                <div class="badge bg-dark text-warning px-3 py-2 fw-semibold">
+                    <i class="bi bi-shield-lock-fill me-1"></i>Khu vực Quản trị viên
+                </div>
+            </section>
+
+            <!-- BỘ LỌC THỐNG KÊ SỐ LIỆU THỰC TẾ THEO NGÀY / THÁNG / NĂM -->
+            <section class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-4">
+                    <div class="row g-3 align-items-end">
+                        <div class="col-lg-4">
+                            <h4 class="fw-bold mb-1"><i class="bi bi-bar-chart-line-fill text-primary me-2"></i>Thống Kê Số Liệu Thực Tế</h4>
+                            <p class="text-muted small mb-1">Lọc doanh thu, lượt mua, lượt xem, lượt click và đánh giá theo thời gian thực</p>
+                            <div id="dong-ho-thoi-gian-thuc" class="badge bg-primary-subtle text-primary fw-semibold">Thời gian thực: đang tải...</div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="loai-loc-thoi-gian" class="form-label fw-semibold small text-secondary mb-1">Chế độ lọc thời gian</label>
+                            <select id="loai-loc-thoi-gian" class="form-select">
+                                <option value="ALL">Tất cả thời gian</option>
+                                <option value="DAY">Lọc theo Ngày</option>
+                                <option value="MONTH">Lọc theo Tháng</option>
+                                <option value="YEAR">Lọc theo Năm</option>
+                            </select>
+                        </div>
+
+                        <div id="khung-chon-ngay-loc" class="col-md-3 d-none">
+                            <label for="o-chon-ngay-loc" class="form-label fw-semibold small text-secondary mb-1">Chọn Ngày</label>
+                            <input type="date" id="o-chon-ngay-loc" class="form-control">
+                        </div>
+
+                        <div id="khung-chon-thang-loc" class="col-md-2 d-none">
+                            <label for="o-chon-thang-loc" class="form-label fw-semibold small text-secondary mb-1">Chọn Tháng</label>
+                            <select id="o-chon-thang-loc" class="form-select">
+                                <option value="01">Tháng 01</option>
+                                <option value="02">Tháng 02</option>
+                                <option value="03">Tháng 03</option>
+                                <option value="04">Tháng 04</option>
+                                <option value="05">Tháng 05</option>
+                                <option value="06">Tháng 06</option>
+                                <option value="07">Tháng 07</option>
+                                <option value="08">Tháng 08</option>
+                                <option value="09">Tháng 09</option>
+                                <option value="10">Tháng 10</option>
+                                <option value="11">Tháng 11</option>
+                                <option value="12">Tháng 12</option>
+                            </select>
+                        </div>
+
+                        <div id="khung-chon-nam-loc" class="col-md-2 d-none">
+                            <label for="o-chon-nam-loc" class="form-label fw-semibold small text-secondary mb-1">Chọn Năm</label>
+                            <select id="o-chon-nam-loc" class="form-select">
+                                <option value="2024">Năm 2024</option>
+                                <option value="2025">Năm 2025</option>
+                                <option value="2026" selected>Năm 2026</option>
+                                <option value="2027">Năm 2027</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-auto d-flex flex-wrap gap-2">
+                            <button type="button" id="nut-loc-hom-nay-thoi-gian-thuc" class="btn btn-outline-success fw-semibold">
+                                <i class="bi bi-clock-history me-1"></i>Hôm nay
+                            </button>
+                            <button type="button" id="nut-ap-dung-bo-loc-thong-ke" class="btn btn-primary fw-semibold">
+                                <i class="bi bi-funnel-fill me-1"></i>Áp dụng
+                            </button>
+                            <button type="button" id="nut-dat-lai-bo-loc-thong-ke" class="btn btn-outline-secondary">
+                                Đặt lại
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HÀNG 4 KPI CARDS (CSS Grid .luoi-chi-so-quan-tri + <article>) -->
+            <section class="luoi-chi-so-quan-tri mb-4">
+                <article class="card border-0 shadow-sm the-thong-ke h-100">
+                    <div class="card-body p-4 thong-tin-phu-khoa-hoc">
+                        <div>
+                            <div class="text-muted small fw-semibold text-uppercase mb-1">Doanh thu thực tế</div>
+                            <h3 id="thong-ke-tong-doanh-thu" class="fw-bold text-danger mb-1">0đ</h3>
+                            <small id="thong-ke-tong-don-hang" class="text-secondary fw-semibold">0 đơn (0 lượt mua)</small>
+                        </div>
+                        <i class="bi bi-cash-coin text-danger display-5"></i>
+                    </div>
+                </article>
+
+                <article class="card border-0 shadow-sm the-thong-ke h-100">
+                    <div class="card-body p-4 thong-tin-phu-khoa-hoc">
+                        <div>
+                            <div class="text-muted small fw-semibold text-uppercase mb-1">Lượt xem & Click thật</div>
+                            <h3 id="thong-ke-tong-luot-xem" class="fw-bold text-primary mb-1">0 lượt xem</h3>
+                            <small id="thong-ke-tong-luot-click" class="text-success fw-semibold">0 lượt click thực tế</small>
+                        </div>
+                        <i class="bi bi-graph-up-arrow text-primary display-5"></i>
+                    </div>
+                </article>
+
+                <article class="card border-0 shadow-sm the-thong-ke h-100">
+                    <div class="card-body p-4 thong-tin-phu-khoa-hoc">
+                        <div>
+                            <div class="text-muted small fw-semibold text-uppercase mb-1">Đánh giá chất lượng</div>
+                            <h4 id="thong-ke-tong-danh-gia" class="fw-bold text-warning mb-1">0 đánh giá</h4>
+                            <small class="text-muted">Chấm điểm 1 - 5 sao thực tế</small>
+                        </div>
+                        <i class="bi bi-star-fill text-warning display-5"></i>
+                    </div>
+                </article>
+
+                <article class="card border-0 shadow-sm the-thong-ke h-100">
+                    <div class="card-body p-4 thong-tin-phu-khoa-hoc">
+                        <div>
+                            <div class="text-muted small fw-semibold text-uppercase mb-1">Quy mô hệ thống</div>
+                            <h4 id="thong-ke-tong-nguoi-dung" class="fw-bold text-success mb-1">0 tài khoản</h4>
+                            <small class="text-muted">55 khóa học – Đồng bộ LocalStorage</small>
+                        </div>
+                        <i class="bi bi-people-fill text-success display-5"></i>
+                    </div>
+                </article>
+            </section>
+
+            <!-- HÀNG 2 CỘT PHÂN TÍCH: TRÁI HIỆU SUẤT 6 DANH MỤC, PHẢI TOP 5 KHÓA HỌC NỔI BẬT -->
+            <section class="luoi-phan-tich-quan-tri mb-5">
+                <article class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-3"><i class="bi bi-pie-chart-fill text-primary me-2"></i>Hiệu Suất Theo 6 Danh Mục</h5>
+                        <div id="khung-thong-ke-danh-muc-quan-tri"></div>
+                    </div>
+                </article>
+
+                <article class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-3"><i class="bi bi-trophy-fill text-warning me-2"></i>Top 5 Khóa Học Nổi Bật</h5>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-hover align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Mã KH</th>
+                                        <th>Tên khóa học</th>
+                                        <th class="text-center">Xem</th>
+                                        <th class="text-center">Click</th>
+                                        <th class="text-center">Mua</th>
+                                        <th class="text-end">Đánh giá</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bang-top-khoa-hoc-quan-tri"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <!-- PHẦN DƯỚI: QUẢN LÝ DỮ LIỆU (5 TABS) -->
+            <section class="mb-4">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+                    <div>
+                        <h4 class="fw-bold mb-1"><i class="bi bi-database-gear text-primary me-2"></i>Quản Lý Dữ Liệu</h4>
+                        <p class="text-muted small mb-0">Quản trị khóa học, tài khoản học viên, đơn hàng, đánh giá sao và liên hệ khách hàng</p>
+                    </div>
+                </div>
+
+                <ul class="nav nav-pills thanh-tab-quan-tri bg-white p-2 rounded shadow-sm mb-4" id="thanh-chuyen-tab-quan-tri" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="nut-tab-quan-ly-khoa-hoc" data-bs-toggle="pill" data-bs-target="#khung-tab-khoa-hoc" type="button" role="tab">
+                            <i class="bi bi-collection-play me-1"></i>1. Quản lý Khóa học
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="nut-tab-quan-ly-nguoi-dung" data-bs-toggle="pill" data-bs-target="#khung-tab-nguoi-dung" type="button" role="tab">
+                            <i class="bi bi-person-badge me-1"></i>2. Quản lý Tài khoản
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="nut-tab-quan-ly-don-hang" data-bs-toggle="pill" data-bs-target="#khung-tab-don-hang" type="button" role="tab">
+                            <i class="bi bi-cart-check me-1"></i>3. Quản lý Đơn hàng
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="nut-tab-quan-ly-danh-gia" data-bs-toggle="pill" data-bs-target="#khung-tab-danh-gia" type="button" role="tab">
+                            <i class="bi bi-star-half me-1"></i>4. Đánh giá sao
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="nut-tab-quan-ly-lien-he" data-bs-toggle="pill" data-bs-target="#khung-tab-lien-he" type="button" role="tab">
+                            <i class="bi bi-envelope-paper me-1"></i>5. Liên hệ khách hàng
+                        </button>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="noi-dung-tab-quan-tri">
+                    <div class="tab-pane fade show active" id="khung-tab-khoa-hoc" role="tabpanel">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <div class="thanh-cong-cu-khoa-hoc">
+                                    <div class="col-12 col-md-5">
+                                        <div class="input-group">
+                                            <div class="input-group-text bg-light"><i class="bi bi-search"></i></div>
+                                            <input type="text" id="o-tim-khoa-hoc-quan-tri" class="form-control" placeholder="Tìm theo mã, tên khóa học hoặc giảng viên...">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-primary fw-bold" id="nut-mo-them-khoa-hoc">
+                                            <i class="bi bi-plus-lg me-1"></i>Thêm Khóa Học Mới
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Mã KH</th>
+                                                <th>Khóa học</th>
+                                                <th>Danh mục</th>
+                                                <th>Học phí</th>
+                                                <th class="text-center">Chỉ số thực tế</th>
+                                                <th class="text-center">Đánh giá TB</th>
+                                                <th class="text-end">Thao tác</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="bang-quan-ly-khoa-hoc"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="khung-tab-nguoi-dung" role="tabpanel">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <div class="thong-tin-phu-khoa-hoc mb-3">
+                                    <h5 class="fw-bold mb-0">Danh Sách Tài Khoản Hệ Thống</h5>
+                                    <small class="text-muted">Chỉ duy nhất tài khoản Admin (admin@gmail.com) có quyền quản trị</small>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Mã User</th>
+                                                <th>Họ và tên</th>
+                                                <th>Email</th>
+                                                <th>Số điện thoại</th>
+                                                <th>Vai trò</th>
+                                                <th class="text-end">Thao tác</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="bang-quan-ly-nguoi-dung"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="khung-tab-don-hang" role="tabpanel">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <div class="thong-tin-phu-khoa-hoc mb-3">
+                                    <h5 class="fw-bold mb-0">Lịch Sử Giao Dịch & Đơn Hàng Thực Tế</h5>
+                                    <small class="text-muted">Tự động lọc theo khoảng thời gian đang chọn ở trên</small>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Mã ĐH</th>
+                                                <th>Khách hàng</th>
+                                                <th>Chi tiết khóa học</th>
+                                                <th>Phương thức</th>
+                                                <th>Tổng thanh toán</th>
+                                                <th>Trạng thái đơn</th>
+                                                <th class="text-end">Thao tác</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="bang-quan-ly-don-hang"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="khung-tab-danh-gia" role="tabpanel">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <div class="thong-tin-phu-khoa-hoc mb-3">
+                                    <h5 class="fw-bold mb-0">Danh Sách Đánh Giá Sao Của Học Viên</h5>
+                                    <small class="text-muted">Đọc từ khóa EDU_REVIEWS trong LocalStorage</small>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Mã KH</th>
+                                                <th>Khóa học</th>
+                                                <th>Người đánh giá</th>
+                                                <th>Số sao</th>
+                                                <th>Nội dung nhận xét</th>
+                                                <th class="text-end">Xóa</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="bang-quan-ly-danh-gia"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="khung-tab-lien-he" role="tabpanel">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Mã LH</th>
+                                                <th>Người gửi</th>
+                                                <th>Tiêu đề & Nội dung</th>
+                                                <th>Trạng thái</th>
+                                                <th class="text-end">Thao tác</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="bang-quan-ly-lien-he"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="modal fade" id="hop-thoai-khoa-hoc" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content border-0 shadow">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title fw-bold" id="tieu-de-hop-thoai-khoa-hoc">Thêm Khóa Học Mới</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                    </div>
+                    <form id="bieu-mau-khoa-hoc-quan-tri">
+                        <div class="modal-body p-4">
+                            <input type="hidden" id="che-do-sua-khoa-hoc" value="ADD">
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-4">
+                                    <label for="nhap-ma-khoa-hoc" class="form-label fw-semibold">Mã khóa học <div class="text-danger d-inline-block">*</div></label>
+                                    <input type="text" class="form-control" id="nhap-ma-khoa-hoc" placeholder="VD: KH56" required>
+                                </div>
+                                <div class="col-md-8">
+                                    <label for="nhap-ten-khoa-hoc" class="form-label fw-semibold">Tên khóa học <div class="text-danger d-inline-block">*</div></label>
+                                    <input type="text" class="form-control" id="nhap-ten-khoa-hoc" placeholder="Nhập tên khóa học" required>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label for="nhap-danh-muc-khoa-hoc" class="form-label fw-semibold">Danh mục chuyên ngành</label>
+                                    <select id="nhap-danh-muc-khoa-hoc" class="form-select">
+                                        <option value="Frontend">Frontend</option>
+                                        <option value="JavaScript">JavaScript</option>
+                                        <option value="Database">Database</option>
+                                        <option value="Công cụ">Công cụ</option>
+                                        <option value="Phân tích hệ thống">Phân tích hệ thống</option>
+                                        <option value="Kỹ năng mềm">Kỹ năng mềm</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="nhap-trinh-do-khoa-hoc" class="form-label fw-semibold">Trình độ</label>
+                                    <select id="nhap-trinh-do-khoa-hoc" class="form-select">
+                                        <option value="Cơ bản">Cơ bản</option>
+                                        <option value="Trung cấp">Trung cấp</option>
+                                        <option value="Nâng cao">Nâng cao</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="nhap-giang-vien-khoa-hoc" class="form-label fw-semibold">Giảng viên phụ trách <div class="text-danger d-inline-block">*</div></label>
+                                    <input type="text" class="form-control" id="nhap-giang-vien-khoa-hoc" placeholder="VD: ThS. Phạm Minh Đương" required>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label for="nhap-gia-goc-khoa-hoc" class="form-label fw-semibold">Giá gốc (VNĐ)</label>
+                                    <input type="number" class="form-control" id="nhap-gia-goc-khoa-hoc" min="0" value="600000" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="nhap-gia-ban-khoa-hoc" class="form-label fw-semibold">Giá ưu đãi (VNĐ) <div class="text-danger d-inline-block">*</div></label>
+                                    <input type="number" class="form-control" id="nhap-gia-ban-khoa-hoc" min="0" value="299000" required>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="nhap-anh-khoa-hoc" class="form-label fw-semibold">Đường dẫn ảnh bìa (URL)</label>
+                                <input type="url" class="form-control" id="nhap-anh-khoa-hoc" placeholder="https://images.unsplash.com/..." required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="nhap-mo-ta-khoa-hoc" class="form-label fw-semibold">Mô tả tóm tắt khóa học</label>
+                                <textarea class="form-control" id="nhap-mo-ta-khoa-hoc" rows="3" required></textarea>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="chon-khoa-hoc-noi-bat" checked>
+                                <label class="form-check-label fw-semibold" for="chon-khoa-hoc-noi-bat">
+                                    Hiển thị ở mục Khóa học nổi bật trên Trang chủ
+                                </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer bg-light">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Hủy bỏ</button>
+                            <button type="submit" class="btn btn-primary fw-bold">Lưu Khóa Học</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-light pt-5 pb-4 mt-auto border-top">
+        <div class="container">
+            <div class="bo-cuc-chan-trang pb-4 border-bottom border-secondary">
+                <section class="cot-thuong-hieu-chan-trang">
+                    <a href="index.html" class="d-inline-block">
+                        <img src="assets/images/logo-light.svg" alt="EduCourses Logo" class="anh-logo-chan-trang">
+                    </a>
+                    <p class="text-secondary small mb-1">
+                        Nền tảng học lập trình và công nghệ thông tin trực tuyến thực chiến. Cung cấp lộ trình bài bản, video bài giảng chất lượng cao và kích hoạt khóa học tự động 24/7.
+                    </p>
+                    <div class="nhom-mang-xa-hoi-chan-trang">
+                        <a href="https://facebook.com" target="_blank" rel="noopener" class="btn btn-outline-light btn-sm" title="Facebook">
+                            <i class="bi bi-facebook me-1"></i>Facebook
+                        </a>
+                        <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-outline-light btn-sm" title="GitHub">
+                            <i class="bi bi-github me-1"></i>GitHub
+                        </a>
+                        <a href="https://zalo.me" target="_blank" rel="noopener" class="btn btn-outline-info btn-sm" title="Zalo: 0372765126">
+                            <i class="bi bi-chat-dots-fill me-1"></i>Zalo: 0372765126
+                        </a>
+                    </div>
+                </section>
+
+                <nav class="cot-lien-ket-chan-trang" aria-label="Liên kết chân trang">
+                    <h6 class="fw-bold text-white text-uppercase mb-2">Liên Kết Nhanh</h6>
+                    <ul class="list-unstyled small mb-2">
+                        <li class="mb-2"><a href="index.html" class="text-secondary text-decoration-none"><i class="bi bi-chevron-right me-1"></i>Trang chủ</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-secondary text-decoration-none"><i class="bi bi-chevron-right me-1"></i>Giới thiệu nền tảng</a></li>
+                        <li class="mb-2"><a href="courses.html" class="text-secondary text-decoration-none"><i class="bi bi-chevron-right me-1"></i>Danh sách 55 khóa học</a></li>
+                        <li class="mb-2"><a href="contact.html" class="text-secondary text-decoration-none"><i class="bi bi-chevron-right me-1"></i>Liên hệ & Hỗ trợ</a></li>
+                    </ul>
+                    <div class="small text-secondary mb-1">
+                        <i class="bi bi-telephone-fill text-success me-2"></i>SĐT/Zalo: <a href="https://zalo.me" target="_blank" rel="noopener" class="text-light fw-semibold text-decoration-none">0372765126</a>
+                    </div>
+                    <div class="small text-secondary">
+                        <i class="bi bi-envelope-fill text-danger me-2"></i>Email: <a href="mailto:holoc2021.tv@gmail.com" class="text-light fw-semibold text-decoration-none">holoc2021.tv@gmail.com</a>
+                    </div>
+                </nav>
+
+                <aside class="cot-ban-do-chan-trang">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="fw-bold text-white text-uppercase mb-0"><i class="bi bi-mortarboard-fill text-warning me-1"></i>Thông Tin Đồ Án</h6>
+                    </div>
+                    <div class="p-3 rounded border border-secondary bg-dark text-secondary small">
+                        <div class="text-light fw-semibold mb-1">Khoa Công nghệ Thông tin – Trường ĐH Trà Vinh</div>
+                        <div class="mb-1">Nền tảng khóa học trực tuyến 100% (mô phỏng front-end bằng HTML5, CSS3, Vanilla JS &amp; LocalStorage).</div>
+                        <div>Hỗ trợ học viên trực tuyến qua Email &amp; trang <a href="contact.html" class="text-info text-decoration-none">Liên hệ</a>.</div>
+                    </div>
+                </aside>
+            </div>
+
+            <div class="text-center pt-3">
+                <p class="mb-1 fw-semibold small text-light">Đồ Án Cơ Sở Ngành - Thiết kế front-end cho Website bán khóa học (EduCourses)</p>
+                <small class="text-secondary">Sinh viên thực hiện: Hồ Thế Lộc (MSSV: 110124109 - Lớp: DA24TTC) | GVHD: ThS. Phạm Minh Đương | SĐT/Zalo: 0372765126</small>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

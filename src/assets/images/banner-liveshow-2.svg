@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 380" width="640" height="380" role="img" aria-label="Live Show Lộ Trình Fullstack &amp; Database">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="380" rx="20" fill="url(#bg2)"/>
+  <circle cx="560" cy="310" r="100" fill="#38bdf8" fill-opacity="0.1"/>
+  <rect x="42" y="36" width="556" height="308" rx="16" fill="#0f172a" fill-opacity="0.88" stroke="#38bdf8" stroke-width="2" stroke-opacity="0.4"/>
+  <!-- Header badge -->
+  <rect x="68" y="60" width="145" height="26" rx="13" fill="#10b981"/>
+  <text x="82" y="77" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff">CHUYÊN ĐỀ THỰC TẾ</text>
+  <text x="68" y="118" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#ffffff">Lộ Trình Học Tập &amp; Đánh Giá Trực Quan</text>
+  <text x="68" y="144" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#94a3b8">Tích hợp video bài giảng, đánh giá 1-5 sao và thanh toán VietQR tự động</text>
+  <!-- 3 Cards minh họa -->
+  <rect x="68" y="168" width="156" height="142" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <circle cx="98" cy="200" r="16" fill="#0d6efd"/>
+  <text x="91" y="205" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">01</text>
+  <text x="84" y="240" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">51+ Khóa Học</text>
+  <text x="84" y="262" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#cbd5e1">Frontend, JS, SQL,</text>
+  <text x="84" y="280" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#cbd5e1">Git &amp; Phân tích HT</text>
+
+  <rect x="242" y="168" width="156" height="142" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <circle cx="272" cy="200" r="16" fill="#f59e0b"/>
+  <text x="264" y="205" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#212529">★</text>
+  <text x="258" y="240" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">Đánh Giá Thật</text>
+  <text x="258" y="262" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#cbd5e1">Chấm điểm 1 - 5 sao</text>
+  <text x="258" y="280" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#cbd5e1">&amp; đếm lượt xem thật</text>
+
+  <rect x="416" y="168" width="156" height="142" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <circle cx="446" cy="200" r="16" fill="#10b981"/>
+  <text x="438" y="205" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">QR</text>
+  <text x="432" y="240" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">Kích Hoạt Nhanh</text>
+  <text x="432" y="262" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#cbd5e1">Mở khóa trọn đời,</text>
+  <text x="432" y="280" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#cbd5e1">không giới hạn lượt</text>
+</svg>

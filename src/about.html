@@ -9,25 +9,37 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-light">
+
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top shadow-sm">
-            <div class="container">
-                <a class="navbar-brand fw-bold text-primary fs-4" href="index.html">
-                    <i class="bi bi-mortarboard-fill me-2"></i>EduCourses
+            <div class="container thanh-menu-dau-trang">
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <img src="assets/images/logo.svg" alt="EduCourses Logo" class="anh-logo-thuong-hieu">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-                    <i class="navbar-toggler-icon"></i>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#thanh-menu-chinh" aria-label="Mở menu">
+                    <i class="navbar-toggler-icon d-inline-block"></i>
                 </button>
-                <div class="collapse navbar-collapse" id="mainNavbar">
+                <div class="collapse navbar-collapse" id="thanh-menu-chinh">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
-                        <li class="nav-item"><a class="nav-link active text-primary fw-semibold" href="about.html">Giới thiệu</a></li>
-                        <li class="nav-item"><a class="nav-link" href="courses.html">Khóa học</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact.html">Liên hệ</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active fw-semibold text-primary" href="about.html">Giới thiệu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="courses.html">Khóa học</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Liên hệ</a>
+                        </li>
                     </ul>
-                    <div class="d-flex align-items-center gap-3">
-                        <a href="login.html" class="btn btn-outline-primary">Đăng nhập</a>
-                        <a href="register.html" class="btn btn-primary">Đăng ký</a>
+                    <div class="nhom-nut-menu-phai">
+                        <a href="cart.html" class="btn btn-outline-primary position-relative">
+                            <i class="bi bi-cart3 me-1"></i>Giỏ hàng
+                            <strong id="so-luong-gio-hang" class="badge bg-danger rounded-pill position-absolute top-0 start-100 translate-middle">0</strong>
+                        </a>
+                        <a href="login.html" class="btn btn-primary">Đăng nhập</a>
                     </div>
                 </div>
             </div>
@@ -35,61 +47,250 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <div class="bg-primary text-white py-5 text-center">
-            <div class="container py-4">
-                <h1 class="fw-bold display-5 mb-3">Về EduCourses</h1>
-                <p class="fs-5 opacity-75">Nền tảng học tập trực tuyến hàng đầu, mang tri thức đến mọi nơi.</p>
+        <section class="nen-mau-chu-dao text-white py-5 text-center">
+            <div class="container py-3">
+                <img src="assets/images/logo-light.svg" alt="EduCourses Logo" class="anh-logo-chan-trang mb-3">
+                <h1 class="fw-bold display-5 mb-2">Về Nền Tảng Giáo Dục Trực Tuyến EduCourses</h1>
+                <p class="fs-5 mb-0">Hệ thống cung cấp khóa học Công nghệ Thông tin thực chiến, minh bạch và học tập chủ động 24/7</p>
             </div>
-        </div>
+        </section>
 
         <div class="container py-5">
-            <div class="row align-items-center g-5 mb-5">
-                <div class="col-lg-6">
-                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Học tập" class="img-fluid rounded-4 shadow">
+            <!-- Phần 1: Giới thiệu nền tảng (CSS Grid .luoi-gioi-thieu) -->
+            <section class="luoi-gioi-thieu mb-5">
+                <div>
+                    <img src="assets/images/banner-liveshow-1.svg" alt="Giới thiệu nền tảng EduCourses" class="img-fluid rounded-4 shadow">
                 </div>
-                <div class="col-lg-6">
-                    <h3 class="fw-bold text-dark mb-4">Câu Chuyện Của Chúng Tôi</h3>
-                    <p class="text-secondary lh-lg text-justify">Được phát triển như một dự án nền tảng Đồ Án Cơ Sở Ngành, EduCourses ra đời với mục tiêu mang lại giải pháp học tập linh hoạt và hiệu quả cho sinh viên. Chúng tôi tập trung vào trải nghiệm người dùng tối ưu, giao diện thân thiện và quy trình mua khóa học an toàn, minh bạch.</p>
-                    <p class="text-secondary lh-lg text-justify">Với phương châm "Học mọi lúc, mọi nơi", nền tảng cung cấp các khóa học đa dạng từ Lập trình, Thiết kế đến Kỹ năng mềm, hỗ trợ người học dễ dàng tiếp cận kiến thức từ các chuyên gia.</p>
-                </div>
-            </div>
+                <article>
+                    <div class="badge bg-primary-subtle text-primary fw-bold px-3 py-2 mb-2">GIỚI THIỆU NỀN TẢNG</div>
+                    <h2 class="fw-bold text-dark mb-3">Nền Tảng Học Lập Trình Trực Tuyến Chuẩn Thực Tế</h2>
+                    <p class="text-secondary lh-lg chu-can-deu mb-3">
+                        <strong>EduCourses</strong> là hệ thống website thương mại điện tử giáo dục được nghiên cứu và phát triển trong khuôn khổ Đồ Án Cơ Sở Ngành tại Khoa Công nghệ Thông tin – Trường Kỹ thuật và Công nghệ, Trường Đại học Trà Vinh, do sinh viên <strong>Hồ Thế Lộc (MSSV: 110124109 – Lớp: DA24TTC)</strong> thực hiện dưới sự hướng dẫn của <strong>ThS. Phạm Minh Đương</strong>.
+                    </p>
+                    <p class="text-secondary lh-lg chu-can-deu mb-0">
+                        Nền tảng cung cấp 55 khóa học chuyên sâu thuộc 6 lĩnh vực trọng tâm: <strong>Lập trình Frontend, JavaScript chuyên sâu, Hệ quản trị Cơ sở dữ liệu (Database), Công cụ phát triển phần mềm (Git/Docker), Phân tích thiết kế hệ thống và Kỹ năng mềm</strong>. Toàn bộ dữ liệu lượt xem, lượt click, lượt đăng ký mua và điểm đánh giá từ 1 đến 5 sao trên hệ thống đều được ghi nhận từ tương tác thực tế của người học, không giới hạn số lượt mua và kích hoạt bài giảng video trực tuyến ngay sau khi thanh toán.
+                    </p>
+                </article>
+            </section>
 
-            <!-- Stats -->
-            <div class="row g-4 text-center mb-5">
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm py-4">
-                        <i class="bi bi-people text-primary display-4 mb-3"></i>
-                        <h2 class="fw-bold text-dark">5,000+</h2>
-                        <div class="text-muted fw-semibold">Học viên tin tưởng</div>
+            <!-- Phần 2: Tầm nhìn, Sứ mệnh & Giá trị cốt lõi (CSS Grid .luoi-gia-tri-cot-loi + <article>) -->
+            <section class="luoi-gia-tri-cot-loi mb-5">
+                <article class="card border-0 shadow-sm h-100 p-4">
+                    <div class="mb-3"><i class="bi bi-eye-fill text-primary fs-1"></i></div>
+                    <h4 class="fw-bold mb-2">Tầm Nhìn</h4>
+                    <p class="text-secondary mb-0">
+                        Trở thành nền tảng học tập lập trình trực tuyến thân thiện, chuẩn mực và dễ tiếp cận dành cho sinh viên ngành Công nghệ Thông tin, giúp kết nối kiến thức giảng đường với kỹ năng xây dựng dự án thực tế.
+                    </p>
+                </article>
+                <article class="card border-0 shadow-sm h-100 p-4">
+                    <div class="mb-3"><i class="bi bi-bullseye text-danger fs-1"></i></div>
+                    <h4 class="fw-bold mb-2">Sứ Mệnh</h4>
+                    <p class="text-secondary mb-0">
+                        Cung cấp lộ trình học tập mạch lạc, học liệu video trực quan, quy trình đăng ký khóa học nhanh chóng qua mã QR và môi trường đánh giá chất lượng khóa học minh bạch từ chính học viên.
+                    </p>
+                </article>
+                <article class="card border-0 shadow-sm h-100 p-4">
+                    <div class="mb-3"><i class="bi bi-shield-check text-success fs-1"></i></div>
+                    <h4 class="fw-bold mb-2">Giá Trị Cốt Lõi</h4>
+                    <p class="text-secondary mb-0">
+                        Dữ liệu trung thực 100% (không sử dụng số liệu ảo), học tập trọn đời không giới hạn số suất đăng ký, bảo mật phân quyền chặt chẽ và lấy trải nghiệm thực tế của người học làm trung tâm.
+                    </p>
+                </article>
+            </section>
+
+            <!-- Phần 3: Số liệu thực tế tự động đồng bộ từ LocalStorage (CSS Grid .luoi-chi-so-quan-tri) -->
+            <section class="mb-5">
+                <div class="text-center mb-4">
+                    <h3 class="fw-bold mb-1">Số Liệu Hoạt Động Thực Tế Của Hệ Thống</h3>
+                    <p class="text-muted mb-0">Tự động thống kê trực tiếp từ dữ liệu tương tác thật trên trình duyệt (LocalStorage)</p>
+                </div>
+                <div class="luoi-chi-so-quan-tri text-center">
+                    <article class="card border-0 shadow-sm py-4 the-thong-ke h-100">
+                        <i class="bi bi-journal-code text-primary display-5 mb-2"></i>
+                        <h2 id="thong-ke-gioi-thieu-khoa-hoc" class="fw-bold text-dark mb-1">55</h2>
+                        <div class="text-muted fw-semibold">Khóa học trực tuyến</div>
+                    </article>
+                    <article class="card border-0 shadow-sm py-4 the-thong-ke h-100">
+                        <i class="bi bi-eye text-success display-5 mb-2"></i>
+                        <h2 id="thong-ke-gioi-thieu-luot-xem" class="fw-bold text-dark mb-1">0</h2>
+                        <div class="text-muted fw-semibold">Lượt xem thực tế</div>
+                    </article>
+                    <article class="card border-0 shadow-sm py-4 the-thong-ke h-100">
+                        <i class="bi bi-hand-index-thumb text-info display-5 mb-2"></i>
+                        <h2 id="thong-ke-gioi-thieu-luot-click" class="fw-bold text-dark mb-1">0</h2>
+                        <div class="text-muted fw-semibold">Lượt click thực tế</div>
+                    </article>
+                    <article class="card border-0 shadow-sm py-4 the-thong-ke h-100">
+                        <i class="bi bi-star-fill text-warning display-5 mb-2"></i>
+                        <h2 id="thong-ke-gioi-thieu-danh-gia" class="fw-bold text-dark mb-1">0</h2>
+                        <div class="text-muted fw-semibold">Đánh giá sao thực tế</div>
+                    </article>
+                </div>
+            </section>
+
+
+            <!-- Phần 3B: Lộ trình đào tạo 3 cấp độ & Câu hỏi thường gặp -->
+            <section class="mb-5">
+                <div class="text-center mb-4">
+                    <h3 class="fw-bold mb-1"><i class="bi bi-layers-fill text-primary me-2"></i>Lộ Trình Đào Tạo 3 Cấp Độ Rõ Ràng</h3>
+                    <p class="text-muted mb-0">Phân chia nội dung khoa học giúp người học chọn đúng khóa học phù hợp năng lực hiện tại</p>
+                </div>
+                <div class="row g-4 mb-5">
+                    <div class="col-md-4">
+                        <article class="card border-0 shadow-sm h-100 p-4">
+                            <div class="badge bg-success-subtle text-success fw-bold mb-2 align-self-start px-3 py-2">Cấp độ 1: Cơ bản</div>
+                            <h5 class="fw-bold mb-2">Xây dựng nền tảng vững chắc</h5>
+                            <p class="text-secondary small mb-0">Dành cho sinh viên năm nhất, năm hai hoặc người mới bắt đầu. Tập trung HTML5, CSS3, Bootstrap 5, JavaScript căn bản và kỹ năng tự học.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-4">
+                        <article class="card border-0 shadow-sm h-100 p-4">
+                            <div class="badge bg-primary-subtle text-primary fw-bold mb-2 align-self-start px-3 py-2">Cấp độ 2: Trung cấp</div>
+                            <h5 class="fw-bold mb-2">Thực chiến dự án &amp; API</h5>
+                            <p class="text-secondary small mb-0">Xây dựng ứng dụng web hoàn chỉnh với DOM nâng cao, Node.js, cơ sở dữ liệu SQL/NoSQL, Git/GitHub và tối ưu hiệu năng thực tế.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-4">
+                        <article class="card border-0 shadow-sm h-100 p-4">
+                            <div class="badge bg-warning-subtle text-dark fw-bold mb-2 align-self-start px-3 py-2">Cấp độ 3: Nâng cao</div>
+                            <h5 class="fw-bold mb-2">Kiến trúc, Bảo mật &amp; Phỏng vấn</h5>
+                            <p class="text-secondary small mb-0">Chuyên sâu về phân tích thiết kế hệ thống, bảo mật OWASP Top 10, triển khai dự án và chuẩn bị hồ sơ Portfolio ứng tuyển doanh nghiệp.</p>
+                        </article>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm py-4">
-                        <i class="bi bi-journal-code text-success display-4 mb-3"></i>
-                        <h2 class="fw-bold text-dark">150+</h2>
-                        <div class="text-muted fw-semibold">Khóa học chất lượng</div>
+
+                <div class="card border-0 shadow-sm p-4">
+                    <h4 class="fw-bold mb-3"><i class="bi bi-question-circle-fill text-primary me-2"></i>Câu Hỏi Thường Gặp (FAQ)</h4>
+                    <div class="accordion" id="hop-hoi-dap-gioi-thieu">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq-cau-1">
+                                    1. Khóa học sau khi mua có thời hạn sử dụng bao lâu?
+                                </button>
+                            </h2>
+                            <div id="faq-cau-1" class="accordion-collapse collapse show" data-bs-parent="#hop-hoi-dap-gioi-thieu">
+                                <div class="accordion-body text-secondary small">
+                                    Tất cả khóa học trên EduCourses đều được kích hoạt quyền truy cập trọn đời. Bạn có thể xem lại video bài giảng và theo dõi tiến độ bất cứ lúc nào trong mục Khóa học của tôi.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq-cau-2">
+                                    2. Tôi có thể học thử trước khi quyết định đăng ký không?
+                                </button>
+                            </h2>
+                            <div id="faq-cau-2" class="accordion-collapse collapse" data-bs-parent="#hop-hoi-dap-gioi-thieu">
+                                <div class="accordion-body text-secondary small">
+                                    Có. Tại trang chi tiết của mỗi khóa học đều có nút "Học thử bài 1 (Miễn phí)", đồng thời hệ thống còn có các khóa học miễn phí 0đ để bạn trải nghiệm trọn vẹn quy trình học tập.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq-cau-3">
+                                    3. Hoàn thành khóa học có nhận được chứng nhận không?
+                                </button>
+                            </h2>
+                            <div id="faq-cau-3" class="accordion-collapse collapse" data-bs-parent="#hop-hoi-dap-gioi-thieu">
+                                <div class="accordion-body text-secondary small">
+                                    Khi hoàn thành 100% tiến độ trong mục Khóa học của tôi, hệ thống sẽ tự động cấp Chứng nhận hoàn thành kèm mã số riêng và hỗ trợ in hoặc lưu PDF trực tiếp.
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm py-4">
-                        <i class="bi bi-award text-warning display-4 mb-3"></i>
-                        <h2 class="fw-bold text-dark">50+</h2>
-                        <div class="text-muted fw-semibold">Giảng viên chuyên gia</div>
+            </section>
+
+            <!-- Phần 4: Thông tin tác giả & liên hệ thực tế -->
+            <section class="card border-0 shadow-sm p-4">
+                <div class="tieu-de-khu-vuc-flex mb-0">
+                    <div>
+                        <h4 class="fw-bold mb-2"><i class="bi bi-person-workspace text-primary me-2"></i>Thông Tin Tác Giả & Liên Hệ Thực Tế</h4>
+                        <p class="text-secondary mb-2">
+                            <strong>Sinh viên thực hiện:</strong> Hồ Thế Lộc (MSSV: 110124109 – Lớp: DA24TTC – Khoa Công nghệ Thông tin, Trường Đại học Trà Vinh)
+                        </p>
+                        <p class="text-secondary mb-2">
+                            <strong>Giảng viên hướng dẫn:</strong> ThS. Phạm Minh Đương
+                        </p>
+                        <p class="text-secondary mb-0">
+                            <strong>Điện thoại / Zalo:</strong> <a href="https://zalo.me" target="_blank" rel="noopener" class="fw-semibold text-decoration-none">0372765126</a> |
+                            <strong>Email:</strong> <a href="mailto:holoc2021.tv@gmail.com" class="fw-semibold text-decoration-none">holoc2021.tv@gmail.com</a> | <strong>Đơn vị:</strong> Khoa CNTT – ĐH Trà Vinh
+                        </p>
+                    </div>
+                    <div>
+                        <a href="courses.html" class="btn btn-primary fw-bold px-4 py-2">
+                            <i class="bi bi-collection-play me-2"></i>Khám Phá 55 Khóa Học
+                        </a>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
     </main>
 
-    <footer class="bg-dark text-light py-4 mt-auto">
-        <div class="container text-center">
-            <p class="mb-1 fw-semibold">Đồ Án Cơ Sở Ngành - Thiết kế front-end cho Website bán khóa học</p>
-            <small class="text-secondary">Sinh viên thực hiện: Hồ Thế Lộc (MSSV: 110124109 - Lớp: DA24TTC)</small>
+    <footer class="bg-dark text-light pt-5 pb-4 mt-auto border-top">
+        <div class="container">
+            <div class="bo-cuc-chan-trang pb-4 border-bottom border-secondary">
+                <section class="cot-thuong-hieu-chan-trang">
+                    <a href="index.html" class="d-inline-block">
+                        <img src="assets/images/logo-light.svg" alt="EduCourses Logo" class="anh-logo-chan-trang">
+                    </a>
+                    <p class="text-secondary small mb-1">
+                        Nền tảng học lập trình và công nghệ thông tin trực tuyến thực chiến. Cung cấp lộ trình bài bản, video bài giảng chất lượng cao và kích hoạt khóa học tự động 24/7.
+                    </p>
+                    <div class="nhom-mang-xa-hoi-chan-trang">
+                        <a href="https://facebook.com" target="_blank" rel="noopener" class="btn btn-outline-light btn-sm" title="Facebook">
+                            <i class="bi bi-facebook me-1"></i>Facebook
+                        </a>
+                        <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-outline-light btn-sm" title="GitHub">
+                            <i class="bi bi-github me-1"></i>GitHub
+                        </a>
+                        <a href="https://zalo.me" target="_blank" rel="noopener" class="btn btn-outline-info btn-sm" title="Zalo: 0372765126">
+                            <i class="bi bi-chat-dots-fill me-1"></i>Zalo: 0372765126
+                        </a>
+                    </div>
+                </section>
+
+                <nav class="cot-lien-ket-chan-trang" aria-label="Liên kết chân trang">
+                    <h6 class="fw-bold text-white text-uppercase mb-2">Liên Kết Nhanh</h6>
+                    <ul class="list-unstyled small mb-2">
+                        <li class="mb-2"><a href="index.html" class="text-secondary text-decoration-none"><i class="bi bi-chevron-right me-1"></i>Trang chủ</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-secondary text-decoration-none"><i class="bi bi-chevron-right me-1"></i>Giới thiệu nền tảng</a></li>
+                        <li class="mb-2"><a href="courses.html" class="text-secondary text-decoration-none"><i class="bi bi-chevron-right me-1"></i>Danh sách 55 khóa học</a></li>
+                        <li class="mb-2"><a href="contact.html" class="text-secondary text-decoration-none"><i class="bi bi-chevron-right me-1"></i>Liên hệ & Hỗ trợ</a></li>
+                    </ul>
+                    <div class="small text-secondary mb-1">
+                        <i class="bi bi-telephone-fill text-success me-2"></i>SĐT/Zalo: <a href="https://zalo.me" target="_blank" rel="noopener" class="text-light fw-semibold text-decoration-none">0372765126</a>
+                    </div>
+                    <div class="small text-secondary">
+                        <i class="bi bi-envelope-fill text-danger me-2"></i>Email: <a href="mailto:holoc2021.tv@gmail.com" class="text-light fw-semibold text-decoration-none">holoc2021.tv@gmail.com</a>
+                    </div>
+                </nav>
+
+                <aside class="cot-ban-do-chan-trang">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="fw-bold text-white text-uppercase mb-0"><i class="bi bi-mortarboard-fill text-warning me-1"></i>Thông Tin Đồ Án</h6>
+                        
+                    </div>
+                    <div class="p-3 rounded border border-secondary bg-dark text-secondary small">
+                        <div class="text-light fw-semibold mb-1">Khoa Công nghệ Thông tin – Trường ĐH Trà Vinh</div>
+                        <div class="mb-1">Nền tảng khóa học trực tuyến 100% (mô phỏng front-end bằng HTML5, CSS3, Vanilla JS &amp; LocalStorage).</div>
+                        <div>Hỗ trợ học viên trực tuyến qua Email &amp; trang <a href="contact.html" class="text-info text-decoration-none">Liên hệ</a>.</div>
+                    </div>
+                </aside>
+            </div>
+
+            <div class="text-center pt-3">
+                <p class="mb-1 fw-semibold small text-light">Đồ Án Cơ Sở Ngành - Thiết kế front-end cho Website bán khóa học (EduCourses)</p>
+                <small class="text-secondary">Sinh viên thực hiện: Hồ Thế Lộc (MSSV: 110124109 - Lớp: DA24TTC) | GVHD: ThS. Phạm Minh Đương | SĐT/Zalo: 0372765126</small>
+            </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/data.js"></script>
     <script src="js/auth.js"></script>
+    <script src="js/about.js"></script>
 </body>
 </html>

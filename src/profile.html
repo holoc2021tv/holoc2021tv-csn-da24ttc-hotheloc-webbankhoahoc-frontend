@@ -7,29 +7,37 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/auth.js"></script>
 </head>
 <body class="bg-light">
+
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top shadow-sm">
-            <div class="container">
-                <a class="navbar-brand fw-bold text-primary fs-4" href="index.html">
-                    <i class="bi bi-mortarboard-fill me-2"></i>EduCourses
+            <div class="container thanh-menu-dau-trang">
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <img src="assets/images/logo.svg" alt="EduCourses Logo" class="anh-logo-thuong-hieu">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-label="Mở menu">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#thanh-menu-chinh" aria-label="Mở menu">
                     <i class="navbar-toggler-icon d-inline-block"></i>
                 </button>
-                <div class="collapse navbar-collapse" id="mainNavbar">
+                <div class="collapse navbar-collapse" id="thanh-menu-chinh">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">Giới thiệu</a></li>
-                        <li class="nav-item"><a class="nav-link" href="courses.html">Khóa học</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact.html">Liên hệ</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">Giới thiệu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="courses.html">Khóa học</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Liên hệ</a>
+                        </li>
                     </ul>
-                    <div class="d-flex align-items-center gap-3">
+                    <div class="nhom-nut-menu-phai">
                         <a href="cart.html" class="btn btn-outline-primary position-relative">
                             <i class="bi bi-cart3 me-1"></i>Giỏ hàng
-                            <strong id="cart-count-badge" class="badge bg-danger rounded-pill position-absolute top-0 start-100 translate-middle">0</strong>
+                            <strong id="so-luong-gio-hang" class="badge bg-danger rounded-pill position-absolute top-0 start-100 translate-middle">0</strong>
                         </a>
                         <a href="login.html" class="btn btn-primary">Đăng nhập</a>
                     </div>
@@ -47,69 +55,66 @@
                 </ol>
             </nav>
 
-            <div class="row g-4">
-                <!-- Cột trái: Thẻ thông tin tóm tắt học viên -->
-                <div class="col-lg-4">
-                    <div class="card border-0 shadow-sm text-center p-4 mb-4">
-                        <div class="mb-3">
-                            <div id="profile-avatar-text" class="avatar-circle mx-auto">HL</div>
+            <!-- Dashboard Học viên: Bố cục CSS Grid (.luoi-bang-dieu-khien-hoc-vien) -->
+            <div class="luoi-bang-dieu-khien-hoc-vien">
+                <aside class="card border-0 shadow-sm text-center p-4 sticky-top thanh-ben-co-dinh">
+                    <div class="mb-3">
+                        <div id="chu-anh-dai-dien-ho-so" class="anh-dai-dien-tron mx-auto">HV</div>
+                    </div>
+                    <h4 id="ten-hien-thi-ho-so" class="fw-bold mb-1">Học Viên</h4>
+                    <div id="email-hien-thi-ho-so" class="text-muted mb-2"></div>
+                    <div class="mb-3">
+                        <small id="nhan-vai-tro-ho-so" class="badge bg-primary-subtle text-primary px-3 py-2 fw-semibold">Học viên chính thức</small>
+                    </div>
+                    <hr>
+                    <div class="luoi-thong-ke-ho-so">
+                        <div>
+                            <div id="thong-ke-don-hang-ho-so" class="fw-bold fs-5 text-primary">0</div>
+                            <small class="text-muted">Đơn hàng</small>
                         </div>
-                        <h4 id="profile-display-name" class="fw-bold mb-1">Hồ Thế Lộc</h4>
-                        <div id="profile-display-email" class="text-muted mb-2">holoc2021.tv@gmail.com</div>
-                        <div class="mb-3">
-                            <small id="profile-role-badge" class="badge bg-primary-subtle text-primary px-3 py-2 fw-semibold">Học viên chính thức</small>
+                        <div class="border-start border-end">
+                            <div id="thong-ke-khoa-hoc-ho-so" class="fw-bold fs-5 text-success">0</div>
+                            <small class="text-muted">Khóa học</small>
                         </div>
-                        <hr>
-                        <div class="row text-center g-2">
-                            <div class="col-4">
-                                <div id="profile-stat-orders" class="fw-bold fs-5 text-primary">0</div>
-                                <small class="text-muted">Đơn hàng</small>
-                            </div>
-                            <div class="col-4 border-start border-end">
-                                <div id="profile-stat-courses" class="fw-bold fs-5 text-success">0</div>
-                                <small class="text-muted">Khóa học</small>
-                            </div>
-                            <div class="col-4">
-                                <div id="profile-stat-favs" class="fw-bold fs-5 text-danger">0</div>
-                                <small class="text-muted">Yêu thích</small>
-                            </div>
-                        </div>
-                        <div class="d-grid gap-2 mt-4">
-                            <a href="my-courses.html" class="btn btn-primary fw-semibold">
-                                <i class="bi bi-journal-check me-2"></i>Vào Khóa Học Của Tôi
-                            </a>
-                            <a href="courses.html" class="btn btn-outline-secondary fw-semibold">
-                                <i class="bi bi-search me-2"></i>Tìm Thêm Khóa Học
-                            </a>
+                        <div>
+                            <div id="thong-ke-yeu-thich-ho-so" class="fw-bold fs-5 text-danger">0</div>
+                            <small class="text-muted">Yêu thích</small>
                         </div>
                     </div>
-                </div>
+                    <div class="nhom-nut-khoa-hoc mt-4">
+                        <a href="my-courses.html" class="btn btn-primary fw-semibold">
+                            <i class="bi bi-journal-check me-2"></i>Vào Khóa Học Của Tôi
+                        </a>
+                        <a href="courses.html" class="btn btn-outline-secondary fw-semibold">
+                            <i class="bi bi-search me-2"></i>Tìm Thêm Khóa Học
+                        </a>
+                    </div>
+                </aside>
 
-                <!-- Cột phải: Form cập nhật hồ sơ & Đổi mật khẩu -->
-                <div class="col-lg-8">
-                    <div class="card border-0 shadow-sm mb-4">
+                <div>
+                    <section class="card border-0 shadow-sm mb-4">
                         <div class="card-body p-4">
                             <h4 class="fw-bold mb-4"><i class="bi bi-person-gear text-primary me-2"></i>Cập Nhật Thông Tin Hồ Sơ</h4>
-                            <form id="profile-update-form">
+                            <form id="bieu-mau-cap-nhat-ho-so">
                                 <div class="row g-3 mb-3">
                                     <div class="col-md-6">
-                                        <label for="profile-fullname" class="form-label fw-semibold">Họ và tên <div class="text-danger d-inline-block">*</div></label>
-                                        <input type="text" class="form-control" id="profile-fullname" required>
+                                        <label for="ho-ten-ho-so" class="form-label fw-semibold">Họ và tên <div class="text-danger d-inline-block">*</div></label>
+                                        <input type="text" class="form-control" id="ho-ten-ho-so" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="profile-email" class="form-label fw-semibold">Địa chỉ Email (Tên đăng nhập)</label>
-                                        <input type="email" class="form-control bg-light" id="profile-email" readonly>
+                                        <label for="email-ho-so" class="form-label fw-semibold">Địa chỉ Email (Tên đăng nhập)</label>
+                                        <input type="email" class="form-control bg-light" id="email-ho-so" readonly>
                                     </div>
                                 </div>
 
                                 <div class="row g-3 mb-3">
                                     <div class="col-md-6">
-                                        <label for="profile-phone" class="form-label fw-semibold">Số điện thoại <div class="text-danger d-inline-block">*</div></label>
-                                        <input type="tel" class="form-control" id="profile-phone" minlength="10" maxlength="10" pattern="[0-9]{10}" required>
+                                        <label for="so-dien-thoai-ho-so" class="form-label fw-semibold">Số điện thoại <div class="text-danger d-inline-block">*</div></label>
+                                        <input type="tel" class="form-control" id="so-dien-thoai-ho-so" minlength="10" maxlength="10" pattern="[0-9]{10}" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="profile-address" class="form-label fw-semibold">Địa chỉ / Đơn vị học tập</label>
-                                        <input type="text" class="form-control" id="profile-address" placeholder="Nhập địa chỉ hoặc lớp học">
+                                        <label for="dia-chi-ho-so" class="form-label fw-semibold">Địa chỉ liên hệ</label>
+                                        <input type="text" class="form-control" id="dia-chi-ho-so" placeholder="Nhập địa chỉ của bạn">
                                     </div>
                                 </div>
 
@@ -117,12 +122,12 @@
                                 <h5 class="fw-bold mb-3"><i class="bi bi-shield-lock text-warning me-2"></i>Đổi Mật Khẩu Mới (Tùy chọn)</h5>
                                 <div class="row g-3 mb-4">
                                     <div class="col-md-6">
-                                        <label for="profile-new-password" class="form-label fw-semibold">Mật khẩu mới</label>
-                                        <input type="password" class="form-control" id="profile-new-password" placeholder="Bỏ trống nếu giữ nguyên mật khẩu cũ">
+                                        <label for="mat-khau-moi-ho-so" class="form-label fw-semibold">Mật khẩu mới</label>
+                                        <input type="password" class="form-control" id="mat-khau-moi-ho-so" placeholder="Bỏ trống nếu giữ nguyên mật khẩu cũ">
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="profile-confirm-password" class="form-label fw-semibold">Xác nhận mật khẩu mới</label>
-                                        <input type="password" class="form-control" id="profile-confirm-password" placeholder="Nhập lại mật khẩu mới">
+                                        <label for="xac-nhan-mat-khau-moi-ho-so" class="form-label fw-semibold">Xác nhận mật khẩu mới</label>
+                                        <input type="password" class="form-control" id="xac-nhan-mat-khau-moi-ho-so" placeholder="Nhập lại mật khẩu mới">
                                     </div>
                                 </div>
 
@@ -131,32 +136,82 @@
                                 </button>
                             </form>
                         </div>
-                    </div>
+                    </section>
 
-                    <!-- Khối danh sách Khóa học Yêu thích trong Hồ sơ -->
-                    <div class="card border-0 shadow-sm">
+                    <section class="card border-0 shadow-sm">
                         <div class="card-body p-4">
                             <h4 class="fw-bold mb-3"><i class="bi bi-heart-fill text-danger me-2"></i>Danh Sách Khóa Học Yêu Thích Của Bạn</h4>
-                            <div id="profile-favorites-list" class="row g-3"></div>
+                            <div id="danh-sach-yeu-thich-ho-so" class="luoi-khoa-hoc-nho"></div>
                         </div>
-                    </div>
+                    </section>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="bg-dark text-light py-4 mt-auto">
-        <div class="container text-center">
-            <p class="mb-1 fw-semibold">Đồ Án Cơ Sở Ngành - Thiết kế front-end cho Website bán khóa học</p>
-            <small class="text-secondary">Sinh viên thực hiện: Hồ Thế Lộc (MSSV: 110124109 - Lớp: DA24TTC)</small>
+    <footer class="bg-dark text-light pt-5 pb-4 mt-auto border-top">
+        <div class="container">
+            <div class="bo-cuc-chan-trang pb-4 border-bottom border-secondary">
+                <section class="cot-thuong-hieu-chan-trang">
+                    <a href="index.html" class="d-inline-block">
+                        <img src="assets/images/logo-light.svg" alt="EduCourses Logo" class="anh-logo-chan-trang">
+                    </a>
+                    <p class="text-secondary small mb-1">
+                        Nền tảng học lập trình và công nghệ thông tin trực tuyến thực chiến. Cung cấp lộ trình bài bản, video bài giảng chất lượng cao và kích hoạt khóa học tự động 24/7.
+                    </p>
+                    <div class="nhom-mang-xa-hoi-chan-trang">
+                        <a href="https://facebook.com" target="_blank" rel="noopener" class="btn btn-outline-light btn-sm" title="Facebook">
+                            <i class="bi bi-facebook me-1"></i>Facebook
+                        </a>
+                        <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-outline-light btn-sm" title="GitHub">
+                            <i class="bi bi-github me-1"></i>GitHub
+                        </a>
+                        <a href="https://zalo.me" target="_blank" rel="noopener" class="btn btn-outline-info btn-sm" title="Zalo: 0372765126">
+                            <i class="bi bi-chat-dots-fill me-1"></i>Zalo: 0372765126
+                        </a>
+                    </div>
+                </section>
+
+                <nav class="cot-lien-ket-chan-trang" aria-label="Liên kết chân trang">
+                    <h6 class="fw-bold text-white text-uppercase mb-2">Liên Kết Nhanh</h6>
+                    <ul class="list-unstyled small mb-2">
+                        <li class="mb-2"><a href="index.html" class="text-secondary text-decoration-none"><i class="bi bi-chevron-right me-1"></i>Trang chủ</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-secondary text-decoration-none"><i class="bi bi-chevron-right me-1"></i>Giới thiệu nền tảng</a></li>
+                        <li class="mb-2"><a href="courses.html" class="text-secondary text-decoration-none"><i class="bi bi-chevron-right me-1"></i>Danh sách 55 khóa học</a></li>
+                        <li class="mb-2"><a href="contact.html" class="text-secondary text-decoration-none"><i class="bi bi-chevron-right me-1"></i>Liên hệ & Hỗ trợ</a></li>
+                    </ul>
+                    <div class="small text-secondary mb-1">
+                        <i class="bi bi-telephone-fill text-success me-2"></i>SĐT/Zalo: <a href="https://zalo.me" target="_blank" rel="noopener" class="text-light fw-semibold text-decoration-none">0372765126</a>
+                    </div>
+                    <div class="small text-secondary">
+                        <i class="bi bi-envelope-fill text-danger me-2"></i>Email: <a href="mailto:holoc2021.tv@gmail.com" class="text-light fw-semibold text-decoration-none">holoc2021.tv@gmail.com</a>
+                    </div>
+                </nav>
+
+                <aside class="cot-ban-do-chan-trang">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="fw-bold text-white text-uppercase mb-0"><i class="bi bi-mortarboard-fill text-warning me-1"></i>Thông Tin Đồ Án</h6>
+                        
+                    </div>
+                    <div class="p-3 rounded border border-secondary bg-dark text-secondary small">
+                        <div class="text-light fw-semibold mb-1">Khoa Công nghệ Thông tin – Trường ĐH Trà Vinh</div>
+                        <div class="mb-1">Nền tảng khóa học trực tuyến 100% (mô phỏng front-end bằng HTML5, CSS3, Vanilla JS &amp; LocalStorage).</div>
+                        <div>Hỗ trợ học viên trực tuyến qua Email &amp; trang <a href="contact.html" class="text-info text-decoration-none">Liên hệ</a>.</div>
+                    </div>
+                </aside>
+            </div>
+
+            <div class="text-center pt-3">
+                <p class="mb-1 fw-semibold small text-light">Đồ Án Cơ Sở Ngành - Thiết kế front-end cho Website bán khóa học (EduCourses)</p>
+                <small class="text-secondary">Sinh viên thực hiện: Hồ Thế Lộc (MSSV: 110124109 - Lớp: DA24TTC) | GVHD: ThS. Phạm Minh Đương | SĐT/Zalo: 0372765126</small>
+            </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/data.js"></script>
     <script src="js/storage.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
     <script src="js/profile.js"></script>
 </body>
 </html>
-
-

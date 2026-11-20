@@ -9,29 +9,37 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-light">
+
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top shadow-sm">
-            <div class="container">
-                <a class="navbar-brand fw-bold text-primary fs-4" href="index.html">
-                    <i class="bi bi-mortarboard-fill me-2"></i>EduCourses
+            <div class="container thanh-menu-dau-trang">
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <img src="assets/images/logo.svg" alt="EduCourses Logo" class="anh-logo-thuong-hieu">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-label="Mở menu">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#thanh-menu-chinh" aria-label="Mở menu">
                     <i class="navbar-toggler-icon d-inline-block"></i>
                 </button>
-                <div class="collapse navbar-collapse" id="mainNavbar">
+                <div class="collapse navbar-collapse" id="thanh-menu-chinh">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">Giới thiệu</a></li>
-                        <li class="nav-item"><a class="nav-link" href="courses.html">Khóa học</a></li>
-                        <li class="nav-item"><a class="nav-link active text-primary fw-semibold" href="contact.html">Liên hệ</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">Giới thiệu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="courses.html">Khóa học</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active fw-semibold text-primary" href="contact.html">Liên hệ</a>
+                        </li>
                     </ul>
-                    <div class="d-flex align-items-center gap-3">
+                    <div class="nhom-nut-menu-phai">
                         <a href="cart.html" class="btn btn-outline-primary position-relative">
                             <i class="bi bi-cart3 me-1"></i>Giỏ hàng
-                            <strong id="cart-count-badge" class="badge bg-danger rounded-pill position-absolute top-0 start-100 translate-middle">0</strong>
+                            <strong id="so-luong-gio-hang" class="badge bg-danger rounded-pill position-absolute top-0 start-100 translate-middle">0</strong>
                         </a>
-                        <a href="login.html" class="btn btn-outline-primary">Đăng nhập</a>
-                        <a href="register.html" class="btn btn-primary">Đăng ký</a>
+                        <a href="login.html" class="btn btn-primary">Đăng nhập</a>
                     </div>
                 </div>
             </div>
@@ -40,104 +48,145 @@
 
     <main class="py-5">
         <div class="container">
-            <div class="text-center mb-5">
+            <section class="text-center mb-5">
                 <h2 class="fw-bold">Liên Hệ Với Chúng Tôi</h2>
-                <p class="text-muted">Mọi thắc mắc và đóng góp của bạn luôn là động lực để chúng tôi phát triển.</p>
-            </div>
+                <p class="text-muted">Mọi thắc mắc và đóng góp của bạn luôn được phản hồi nhanh chóng qua Zalo và Email thực tế</p>
+            </section>
 
-            <div class="row g-5">
-                <!-- Thông tin & Bản đồ -->
-                <div class="col-lg-5">
-                    <div class="card border-0 shadow-sm h-100">
-                        <div class="card-body p-4">
-                            <h4 class="fw-bold mb-4">Thông tin liên hệ</h4>
-                            
-                            <div class="d-flex align-items-start mb-4">
-                                <i class="bi bi-geo-alt-fill text-primary fs-3 me-3"></i>
-                                <div>
-                                    <h6 class="fw-bold mb-1">Trụ sở chính (Đại học Trà Vinh)</h6>
-                                    <div class="text-secondary">126 Nguyễn Thiện Thành, Phường 5, TP. Trà Vinh, Tỉnh Trà Vinh</div>
-                                </div>
-                            </div>
-
-                            <div class="d-flex align-items-start mb-4">
-                                <i class="bi bi-telephone-fill text-success fs-3 me-3"></i>
-                                <div>
-                                    <h6 class="fw-bold mb-1">Số điện thoại hỗ trợ</h6>
-                                    <div class="text-secondary">0372 765 126 (Zalo/Hotline)</div>
-                                </div>
-                            </div>
-
-                            <div class="d-flex align-items-start mb-4">
-                                <i class="bi bi-envelope-fill text-danger fs-3 me-3"></i>
-                                <div>
-                                    <h6 class="fw-bold mb-1">Email liên hệ</h6>
-                                    <div class="text-secondary">holoc2021.tv@gmail.com</div>
-                                </div>
-                            </div>
-
-                            <hr>
-                            <!-- Nhúng Google Maps ĐH Trà Vinh - Sử dụng class map-iframe thay thế Inline CSS -->
-                            <div class="ratio ratio-16x9 rounded overflow-hidden shadow-sm mt-4">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.126442655768!2d106.34440627581109!3d9.923447974347716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a0175ea296facb%3A0x55def92a290586eb!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBUcsOgIFZpbmg!5e0!3m2!1svi!2s!4v1700000000000!5m2!1svi!2s" class="map-iframe" allowfullscreen="" loading="lazy"></iframe>
+            <div class="luoi-trang-lien-he">
+                <aside class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <h4 class="fw-bold mb-4">Thông tin liên hệ thực tế</h4>
+                        
+                        <div class="d-flex align-items-start mb-4">
+                            <i class="bi bi-building text-primary fs-3 me-3"></i>
+                            <div>
+                                <h6 class="fw-bold mb-1">Địa chỉ liên hệ</h6>
+                                <div class="text-secondary mb-1">171 Hưng Mỹ, Vĩnh Long</div>
+                                <small class="text-muted">Hỗ trợ học viên trực tuyến qua Email &amp; trang Liên hệ.</small>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Form gửi tin nhắn -->
-                <div class="col-lg-7">
-                    <div class="card border-0 shadow-sm h-100">
-                        <div class="card-body p-5">
-                            <h4 class="fw-bold mb-4">Gửi tin nhắn trực tuyến</h4>
-                            <form id="contact-form">
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <label for="contact-name" class="form-label fw-semibold">Họ và tên <div class="text-danger d-inline-block">*</div></label>
-                                        <input type="text" class="form-control" id="contact-name" placeholder="Nhập tên của bạn" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="contact-email" class="form-label fw-semibold">Email <div class="text-danger d-inline-block">*</div></label>
-                                        <input type="email" class="form-control" id="contact-email" placeholder="name@example.com" required>
-                                    </div>
+                        <div class="d-flex align-items-start mb-4">
+                            <i class="bi bi-telephone-fill text-success fs-3 me-3"></i>
+                            <div>
+                                <h6 class="fw-bold mb-1">Số điện thoại / Zalo hỗ trợ</h6>
+                                <div class="text-secondary">
+                                    <a href="https://zalo.me" target="_blank" rel="noopener" class="text-decoration-none fw-semibold">0372765126 (Zalo/Hotline)</a>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="contact-subject" class="form-label fw-semibold">Tiêu đề <div class="text-danger d-inline-block">*</div></label>
-                                    <input type="text" class="form-control" id="contact-subject" placeholder="Bạn cần hỗ trợ vấn đề gì?" required>
-                                </div>
-                                <div class="mb-4">
-                                    <label for="contact-message" class="form-label fw-semibold">Nội dung tin nhắn <div class="text-danger d-inline-block">*</div></label>
-                                    <textarea class="form-control" id="contact-message" rows="5" placeholder="Nhập chi tiết nội dung cần hỗ trợ..." required></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold">
-                                    <i class="bi bi-send-fill me-2"></i>Gửi Tin Nhắn
-                                </button>
-                            </form>
+                            </div>
                         </div>
+
+                        <div class="d-flex align-items-start mb-4">
+                            <i class="bi bi-envelope-fill text-danger fs-3 me-3"></i>
+                            <div>
+                                <h6 class="fw-bold mb-1">Email liên hệ</h6>
+                                <div class="text-secondary">
+                                    <a href="mailto:holoc2021.tv@gmail.com" class="text-decoration-none fw-semibold">holoc2021.tv@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
-                </div>
+                </aside>
+
+                <section class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-5">
+                        <h4 class="fw-bold mb-2">Gửi tin nhắn liên hệ (Mô phỏng cục bộ)</h4>
+                        <p class="text-muted small mb-4">Tin nhắn được lưu trực tiếp trong trình duyệt (LocalStorage) và hiển thị tại tab Quản lý liên hệ của Admin; chưa gửi tới email/Zalo thực tế.</p>
+                        <form id="bieu-mau-lien-he">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="ho-ten-lien-he" class="form-label fw-semibold">Họ và tên <div class="text-danger d-inline-block">*</div></label>
+                                    <input type="text" class="form-control" id="ho-ten-lien-he" placeholder="Nhập tên của bạn" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email-lien-he" class="form-label fw-semibold">Email <div class="text-danger d-inline-block">*</div></label>
+                                    <input type="email" class="form-control" id="email-lien-he" placeholder="name@example.com" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="tieu-de-lien-he" class="form-label fw-semibold">Tiêu đề <div class="text-danger d-inline-block">*</div></label>
+                                <input type="text" class="form-control" id="tieu-de-lien-he" placeholder="Bạn cần hỗ trợ vấn đề gì?" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="noi-dung-lien-he" class="form-label fw-semibold">Nội dung tin nhắn <div class="text-danger d-inline-block">*</div></label>
+                                <textarea class="form-control" id="noi-dung-lien-he" rows="5" placeholder="Nhập chi tiết nội dung cần hỗ trợ..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold">
+                                <i class="bi bi-send-fill me-2"></i>Gửi Tin Nhắn
+                            </button>
+                        </form>
+                    </div>
+                </section>
             </div>
         </div>
     </main>
 
-    <footer class="bg-dark text-light py-4 mt-auto">
-        <div class="container text-center">
-            <p class="mb-1 fw-semibold">Đồ Án Cơ Sở Ngành - Thiết kế front-end cho Website bán khóa học</p>
-            <small class="text-secondary">Sinh viên thực hiện: Hồ Thế Lộc (MSSV: 110124109 - Lớp: DA24TTC)</small>
+    <footer class="bg-dark text-light pt-5 pb-4 mt-auto border-top">
+        <div class="container">
+            <div class="bo-cuc-chan-trang pb-4 border-bottom border-secondary">
+                <section class="cot-thuong-hieu-chan-trang">
+                    <a href="index.html" class="d-inline-block">
+                        <img src="assets/images/logo-light.svg" alt="EduCourses Logo" class="anh-logo-chan-trang">
+                    </a>
+                    <p class="text-secondary small mb-1">
+                        Nền tảng học lập trình và công nghệ thông tin trực tuyến thực chiến. Cung cấp lộ trình bài bản, video bài giảng chất lượng cao và kích hoạt khóa học tự động 24/7.
+                    </p>
+                    <div class="nhom-mang-xa-hoi-chan-trang">
+                        <a href="https://facebook.com" target="_blank" rel="noopener" class="btn btn-outline-light btn-sm" title="Facebook">
+                            <i class="bi bi-facebook me-1"></i>Facebook
+                        </a>
+                        <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-outline-light btn-sm" title="GitHub">
+                            <i class="bi bi-github me-1"></i>GitHub
+                        </a>
+                        <a href="https://zalo.me" target="_blank" rel="noopener" class="btn btn-outline-info btn-sm" title="Zalo: 0372765126">
+                            <i class="bi bi-chat-dots-fill me-1"></i>Zalo: 0372765126
+                        </a>
+                    </div>
+                </section>
+
+                <nav class="cot-lien-ket-chan-trang" aria-label="Liên kết chân trang">
+                    <h6 class="fw-bold text-white text-uppercase mb-2">Liên Kết Nhanh</h6>
+                    <ul class="list-unstyled small mb-2">
+                        <li class="mb-2"><a href="index.html" class="text-secondary text-decoration-none"><i class="bi bi-chevron-right me-1"></i>Trang chủ</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-secondary text-decoration-none"><i class="bi bi-chevron-right me-1"></i>Giới thiệu nền tảng</a></li>
+                        <li class="mb-2"><a href="courses.html" class="text-secondary text-decoration-none"><i class="bi bi-chevron-right me-1"></i>Danh sách 55 khóa học</a></li>
+                        <li class="mb-2"><a href="contact.html" class="text-secondary text-decoration-none"><i class="bi bi-chevron-right me-1"></i>Liên hệ & Hỗ trợ</a></li>
+                    </ul>
+                    <div class="small text-secondary mb-1">
+                        <i class="bi bi-telephone-fill text-success me-2"></i>SĐT/Zalo: <a href="https://zalo.me" target="_blank" rel="noopener" class="text-light fw-semibold text-decoration-none">0372765126</a>
+                    </div>
+                    <div class="small text-secondary">
+                        <i class="bi bi-envelope-fill text-danger me-2"></i>Email: <a href="mailto:holoc2021.tv@gmail.com" class="text-light fw-semibold text-decoration-none">holoc2021.tv@gmail.com</a>
+                    </div>
+                </nav>
+
+                <aside class="cot-ban-do-chan-trang">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="fw-bold text-white text-uppercase mb-0"><i class="bi bi-mortarboard-fill text-warning me-1"></i>Thông Tin Đồ Án</h6>
+                        
+                    </div>
+                    <div class="p-3 rounded border border-secondary bg-dark text-secondary small">
+                        <div class="text-light fw-semibold mb-1">Khoa Công nghệ Thông tin – Trường ĐH Trà Vinh</div>
+                        <div class="mb-1">Nền tảng khóa học trực tuyến 100% (mô phỏng front-end bằng HTML5, CSS3, Vanilla JS &amp; LocalStorage).</div>
+                        <div>Hỗ trợ học viên trực tuyến qua Email &amp; trang <a href="contact.html" class="text-info text-decoration-none">Liên hệ</a>.</div>
+                    </div>
+                </aside>
+            </div>
+
+            <div class="text-center pt-3">
+                <p class="mb-1 fw-semibold small text-light">Đồ Án Cơ Sở Ngành - Thiết kế front-end cho Website bán khóa học (EduCourses)</p>
+                <small class="text-secondary">Sinh viên thực hiện: Hồ Thế Lộc (MSSV: 110124109 - Lớp: DA24TTC) | GVHD: ThS. Phạm Minh Đương | SĐT/Zalo: 0372765126</small>
+            </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/data.js"></script>
     <script src="js/storage.js"></script>
+    <script src="js/data.js"></script>
     <script src="js/auth.js"></script>
-    <script>
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert("Cảm ơn bạn đã liên hệ! Tin nhắn của bạn đã được gửi đến ban quản trị.");
-            this.reset();
-        });
-    </script>
+    <script src="js/contact.js"></script>
 </body>
 </html>
-

@@ -1,153 +1,231 @@
 /**
  * FILE: src/js/courses.js
- * NHIỆM VỤ: Hiển thị toàn bộ khóa học, xử lý tìm kiếm, lọc theo danh mục/giá và sắp xếp.
+ * NHIEM VU: Hien thi danh sach 55 khoa hoc co phan trang (9 khoa/trang),
+ * tim kiem, loc va sap xep bang ham dung chung taoMaHTMLTheKhoaHoc().
  */
 
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Cập nhật số lượng giỏ hàng trên Navbar
-    updateCartBadgeUI();
+var SO_KHOA_HOC_MOI_TRANG = 9;
+var trangHienTai = 1;
+var danhSachDaLocHienTai = [];
 
-    // 2. Hiển thị toàn bộ khóa học khi mới vào trang
-    applyCourseFilters();
+document.addEventListener('DOMContentLoaded', function() {
+    capNhatHuyHieuGioHang();
+    dongBoDanhMucBoLoc();
 
-    // 3. Khởi tạo các sự kiện lắng nghe bộ lọc
-    setupFilterEvents();
+    var thamSoUrl = new URLSearchParams(window.location.search);
+    var danhMucTuUrl = thamSoUrl.get('category');
+    var boLocDanhMuc = document.getElementById('bo-loc-danh-muc');
+    if (danhMucTuUrl && boLocDanhMuc) {
+        boLocDanhMuc.value = danhMucTuUrl;
+    }
+
+    apDungBoLocKhoaHoc();
+    ganSuKienBoLocKhoaHoc();
+    ganSuKienDanhSachKhoaHoc();
 });
 
-/**
- * Gắn sự kiện cho các ô tìm kiếm, dropdown lọc và nút đặt lại
- */
-function setupFilterEvents() {
-    const searchInput = document.getElementById('search-input');
-    const btnSearch = document.getElementById('btn-search');
-    const categoryFilter = document.getElementById('category-filter');
-    const priceFilter = document.getElementById('price-filter');
-    const sortFilter = document.getElementById('sort-filter');
-    const btnReset = document.getElementById('btn-reset-filter');
+function ganSuKienDanhSachKhoaHoc() {
+    var khungDanhSach = document.getElementById('danh-sach-khoa-hoc');
+    if (khungDanhSach) {
+        khungDanhSach.addEventListener('click', function(e) {
+            var nutYeuThich = e.target.closest('.nut-yeu-thich-danh-sach');
+            if (nutYeuThich) {
+                var maKhoaHoc = nutYeuThich.getAttribute('data-ma-khoa-hoc');
+                if (maKhoaHoc) {
+                    xuLyNutYeuThichChung(maKhoaHoc, nutYeuThich);
+                }
+                return;
+            }
 
-    if (btnSearch) btnSearch.addEventListener('click', applyCourseFilters);
-    if (searchInput) searchInput.addEventListener('input', applyCourseFilters);
-    if (categoryFilter) categoryFilter.addEventListener('change', applyCourseFilters);
-    if (priceFilter) priceFilter.addEventListener('change', applyCourseFilters);
-    if (sortFilter) sortFilter.addEventListener('change', applyCourseFilters);
+            var nutThemGio = e.target.closest('.nut-them-gio-danh-sach');
+            if (nutThemGio) {
+                var maThem = nutThemGio.getAttribute('data-ma-khoa-hoc');
+                if (maThem) {
+                    xuLyThemGioHangDanhSach(maThem);
+                }
+                return;
+            }
 
-    if (btnReset) {
-        btnReset.addEventListener('click', () => {
-            searchInput.value = '';
-            categoryFilter.value = 'ALL';
-            priceFilter.value = 'ALL';
-            sortFilter.value = 'DEFAULT';
-            applyCourseFilters();
+            var lienKetChiTiet = e.target.closest('.lien-ket-dem-click-danh-sach');
+            if (lienKetChiTiet) {
+                var maClick = lienKetChiTiet.getAttribute('data-ma-khoa-hoc');
+                if (maClick) {
+                    tangLuotClickKhoaHoc(maClick);
+                }
+            }
+        });
+    }
+
+    var thanhPhanTrang = document.getElementById('thanh-phan-trang-khoa-hoc');
+    if (thanhPhanTrang) {
+        thanhPhanTrang.addEventListener('click', function(e) {
+            var nutTrang = e.target.closest('.nut-chuyen-trang');
+            if (nutTrang) {
+                e.preventDefault();
+                var soTrang = Number(nutTrang.getAttribute('data-trang'));
+                if (soTrang >= 1) {
+                    trangHienTai = soTrang;
+                    hienThiDanhSachKhoaHoc(danhSachDaLocHienTai);
+                }
+            }
         });
     }
 }
 
-/**
- * Lọc và sắp xếp mảng khóa học dựa trên lựa chọn của người dùng
- */
-function applyCourseFilters() {
-    const keyword = document.getElementById('search-input').value.trim().toLowerCase();
-    const category = document.getElementById('category-filter').value;
-    const priceRange = document.getElementById('price-filter').value;
-    const sortBy = document.getElementById('sort-filter').value;
+function ganSuKienBoLocKhoaHoc() {
+    var oTimKiem = document.getElementById('o-tim-kiem-khoa-hoc');
+    var nutTimKiem = document.getElementById('nut-tim-kiem-khoa-hoc');
+    var boLocDanhMuc = document.getElementById('bo-loc-danh-muc');
+    var boLocTrinhDo = document.getElementById('bo-loc-trinh-do');
+    var boLocMucGia = document.getElementById('bo-loc-muc-gia');
+    var boLocSapXep = document.getElementById('bo-loc-sap-xep');
+    var nutDatLai = document.getElementById('nut-dat-lai-bo-loc');
 
-    let filtered = getAllCourses().filter(course => {
-        // Điều kiện 1: Từ khóa (tên khóa học hoặc giảng viên)
-        const matchKeyword = course.title.toLowerCase().includes(keyword) ||
-                             course.instructor.toLowerCase().includes(keyword);
+    if (nutTimKiem) nutTimKiem.addEventListener('click', function() { trangHienTai = 1; apDungBoLocKhoaHoc(); });
+    if (oTimKiem) oTimKiem.addEventListener('input', function() { trangHienTai = 1; apDungBoLocKhoaHoc(); });
+    if (boLocDanhMuc) boLocDanhMuc.addEventListener('change', function() { trangHienTai = 1; apDungBoLocKhoaHoc(); });
+    if (boLocTrinhDo) boLocTrinhDo.addEventListener('change', function() { trangHienTai = 1; apDungBoLocKhoaHoc(); });
+    if (boLocMucGia) boLocMucGia.addEventListener('change', function() { trangHienTai = 1; apDungBoLocKhoaHoc(); });
+    if (boLocSapXep) boLocSapXep.addEventListener('change', function() { trangHienTai = 1; apDungBoLocKhoaHoc(); });
 
-        // Điều kiện 2: Danh mục
-        const matchCategory = (category === 'ALL') || (course.category === category);
-
-        // Điều kiện 3: Mức giá
-        let matchPrice = true;
-        if (priceRange === 'UNDER_300') {
-            matchPrice = course.salePrice < 300000;
-        } else if (priceRange === '300_TO_450') {
-            matchPrice = course.salePrice >= 300000 && course.salePrice <= 450000;
-        } else if (priceRange === 'OVER_450') {
-            matchPrice = course.salePrice > 450000;
-        }
-
-        return matchKeyword && matchCategory && matchPrice;
-    });
-
-    // Sắp xếp kết quả
-    if (sortBy === 'PRICE_ASC') {
-        filtered.sort((a, b) => a.salePrice - b.salePrice);
-    } else if (sortBy === 'PRICE_DESC') {
-        filtered.sort((a, b) => b.salePrice - a.salePrice);
-    } else if (sortBy === 'RATING_DESC') {
-        filtered.sort((a, b) => b.rating - a.rating);
+    if (nutDatLai) {
+        nutDatLai.addEventListener('click', function() {
+            oTimKiem.value = '';
+            boLocDanhMuc.value = 'ALL';
+            if (boLocTrinhDo) boLocTrinhDo.value = 'ALL';
+            boLocMucGia.value = 'ALL';
+            boLocSapXep.value = 'DEFAULT';
+            trangHienTai = 1;
+            apDungBoLocKhoaHoc();
+            hienThiThongBao('Đã đặt lại bộ lọc khóa học!', 'info');
+        });
     }
-
-    renderCourseList(filtered);
 }
 
-/**
- * Render danh sách khóa học ra giao diện
- * @param {Array} courseList - Mảng khóa học sau khi lọc
- */
-function renderCourseList(courseList) {
-    const container = document.getElementById('all-courses-container');
-    const countLabel = document.getElementById('course-result-count');
-    if (!container) return;
+function apDungBoLocKhoaHoc() {
+    var tuKhoa = document.getElementById('o-tim-kiem-khoa-hoc').value.trim().toLowerCase();
+    var danhMuc = document.getElementById('bo-loc-danh-muc').value;
+    var boLocTrinhDo = document.getElementById('bo-loc-trinh-do');
+    var trinhDo = boLocTrinhDo ? boLocTrinhDo.value : 'ALL';
+    var mucGia = document.getElementById('bo-loc-muc-gia').value;
+    var kieuSapXep = document.getElementById('bo-loc-sap-xep').value;
 
-    if (countLabel) {
-        countLabel.textContent = `Hiển thị ${courseList.length} khóa học phù hợp`;
+    var tatCaKhoaHoc = layTatCaKhoaHoc();
+    var danhSachDaLoc = [];
+
+    for (var i = 0; i < tatCaKhoaHoc.length; i++) {
+        var khoaHoc = tatCaKhoaHoc[i];
+        var tieuDeThuong = (khoaHoc.title || '').toLowerCase();
+        var giangVienThuong = (khoaHoc.instructor || '').toLowerCase();
+
+        var khopTuKhoa = (tieuDeThuong.indexOf(tuKhoa) > -1) || (giangVienThuong.indexOf(tuKhoa) > -1);
+        var khopDanhMuc = (danhMuc === 'ALL') || (khoaHoc.category === danhMuc);
+        var khopTrinhDo = (trinhDo === 'ALL') || ((khoaHoc.level || 'Cơ bản') === trinhDo);
+
+        var khopGia = true;
+        if (mucGia === 'FREE') {
+            khopGia = Number(khoaHoc.salePrice) === 0;
+        } else if (mucGia === 'UNDER_300') {
+            khopGia = khoaHoc.salePrice < 300000;
+        } else if (mucGia === '300_TO_450') {
+            khopGia = (khoaHoc.salePrice >= 300000 && khoaHoc.salePrice <= 450000);
+        } else if (mucGia === 'OVER_450') {
+            khopGia = khoaHoc.salePrice > 450000;
+        }
+
+        if (khopTuKhoa && khopDanhMuc && khopTrinhDo && khopGia) {
+            danhSachDaLoc.push(khoaHoc);
+        }
     }
 
-    if (courseList.length === 0) {
-        container.innerHTML = `
-            <div class="col-12">
-                <div class="alert alert-light border text-center py-4">
-                    <p class="mb-0 text-muted">Không tìm thấy khóa học nào khớp với bộ lọc của bạn.</p>
-                </div>
-            </div>
-        `;
+    if (kieuSapXep === 'PRICE_ASC') {
+        danhSachDaLoc.sort(function(a, b) { return a.salePrice - b.salePrice; });
+    } else if (kieuSapXep === 'PRICE_DESC') {
+        danhSachDaLoc.sort(function(a, b) { return b.salePrice - a.salePrice; });
+    } else if (kieuSapXep === 'RATING_DESC') {
+        danhSachDaLoc.sort(function(a, b) { return Number(b.rating || 0) - Number(a.rating || 0); });
+    }
+
+    danhSachDaLocHienTai = danhSachDaLoc;
+    hienThiDanhSachKhoaHoc(danhSachDaLoc);
+}
+
+function hienThiDanhSachKhoaHoc(danhSachKhoaHoc) {
+    var khungDanhSach = document.getElementById('danh-sach-khoa-hoc');
+    var nhanKetQua = document.getElementById('so-ket-qua-khoa-hoc');
+    var thanhPhanTrang = document.getElementById('thanh-phan-trang-khoa-hoc');
+    if (!khungDanhSach) {
         return;
     }
 
-    container.innerHTML = courseList.map(course => `
-        <div class="col-md-6 col-xl-4">
-            <div class="card h-100 shadow-sm border-0 course-card">
-                <img src="${course.image}" class="card-img-top" alt="${course.title}">
-                <div class="card-body d-flex flex-column">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <small class="badge bg-primary-subtle text-primary fw-semibold">${course.category}</small>
-                        <small class="text-warning fw-bold">
-                            <i class="bi bi-star-fill"></i> ${course.rating}
-                        </small>
-                    </div>
-                    <h5 class="card-title fw-bold fs-6">${course.title}</h5>
-                    <p class="card-text text-muted small mb-2">GV: ${course.instructor}</p>
-                    
-                    <div class="mt-auto pt-2 border-top">
-                        <div class="d-flex align-items-baseline gap-2 mb-3">
-                            <strong class="text-danger fs-5">${formatCurrencyVND(course.salePrice)}</strong>
-                            <del class="text-muted small">${formatCurrencyVND(course.originalPrice)}</del>
-                        </div>
-                        <div class="d-grid gap-2">
-                            <button type="button" class="btn btn-primary btn-sm btn-add-cart" data-id="${course.id}">
-                                <i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
-                            </button>
-                            <a href="course-detail.html?id=${course.id}" class="btn btn-outline-secondary btn-sm">
-                                Xem chi tiết
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `).join('');
+    var tongSoTrang = Math.ceil(danhSachKhoaHoc.length / SO_KHOA_HOC_MOI_TRANG);
+    if (tongSoTrang < 1) tongSoTrang = 1;
+    if (trangHienTai > tongSoTrang) trangHienTai = tongSoTrang;
 
-    // Gắn sự kiện click nút "Thêm vào giỏ"
-    const addButtons = container.querySelectorAll('.btn-add-cart');
-    addButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const courseId = button.getAttribute('data-id');
-            const result = addToCart(courseId, 1);
-            alert(result.message);
-        });
-    });
+    if (nhanKetQua) {
+        nhanKetQua.textContent = 'Hiển thị ' + danhSachKhoaHoc.length + ' khóa học phù hợp (Trang ' + trangHienTai + '/' + tongSoTrang + ')';
+    }
+
+    if (danhSachKhoaHoc.length === 0) {
+        var maHTMLRong = '';
+        maHTMLRong += '<div class="alert alert-light border text-center py-4 mb-0">';
+        maHTMLRong += '  <p class="mb-0 text-muted">Không tìm thấy khóa học nào khớp với bộ lọc của bạn.</p>';
+        maHTMLRong += '</div>';
+        khungDanhSach.innerHTML = maHTMLRong;
+        if (thanhPhanTrang) thanhPhanTrang.innerHTML = '';
+        return;
+    }
+
+    var viTriBatDau = (trangHienTai - 1) * SO_KHOA_HOC_MOI_TRANG;
+    var viTriKetThuc = viTriBatDau + SO_KHOA_HOC_MOI_TRANG;
+    var danhSachTrang = danhSachKhoaHoc.slice(viTriBatDau, viTriKetThuc);
+
+    var maHTML = '';
+    for (var i = 0; i < danhSachTrang.length; i++) {
+        maHTML += taoMaHTMLTheKhoaHoc(danhSachTrang[i], 'danh-sach');
+    }
+    khungDanhSach.innerHTML = maHTML;
+
+    if (thanhPhanTrang) {
+        if (tongSoTrang <= 1) {
+            thanhPhanTrang.innerHTML = '';
+        } else {
+            var maTrang = '';
+            for (var p = 1; p <= tongSoTrang; p++) {
+                var lopActive = (p === trangHienTai) ? ' active' : '';
+                maTrang += '<li class="page-item' + lopActive + '"><a class="page-link nut-chuyen-trang" href="#" data-trang="' + p + '">' + p + '</a></li>';
+            }
+            thanhPhanTrang.innerHTML = maTrang;
+        }
+    }
+}
+
+function xuLyThemGioHangDanhSach(maKhoaHoc) {
+    tangLuotClickKhoaHoc(maKhoaHoc);
+    var ketQua = themVaoGio(maKhoaHoc, 1);
+    hienThiThongBao(ketQua.message, ketQua.success ? 'success' : 'warning');
+    apDungBoLocKhoaHoc();
+}
+
+function dongBoDanhMucBoLoc() {
+    var boLocDanhMuc = document.getElementById('bo-loc-danh-muc');
+    if (!boLocDanhMuc) {
+        return;
+    }
+    var tatCaKhoaHoc = layTatCaKhoaHoc();
+    var danhMucDaCo = {};
+    var i;
+    for (i = 0; i < boLocDanhMuc.options.length; i++) {
+        danhMucDaCo[boLocDanhMuc.options[i].value] = true;
+    }
+    for (i = 0; i < tatCaKhoaHoc.length; i++) {
+        var dm = tatCaKhoaHoc[i].category;
+        if (dm && !danhMucDaCo[dm]) {
+            danhMucDaCo[dm] = true;
+            var tuyChon = document.createElement('option');
+            tuyChon.value = dm;
+            tuyChon.textContent = dm;
+            boLocDanhMuc.appendChild(tuyChon);
+        }
+    }
 }

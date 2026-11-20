@@ -1,7 +1,6 @@
 /* FILE: src/css/style.css */
 /* ==========================================================================
-   1. HỆ THỐNG BIẾN CSS TOÀN CỤC (CSS VARIABLES)
-   Chỉ cần thay đổi giá trị tại :root để đổi giao diện toàn bộ Website
+   1. HE THONG BIEN CSS TOAN CUC (CSS VARIABLES)
    ========================================================================== */
 :root {
     --primary-color: #0d6efd;
@@ -21,15 +20,32 @@
     --font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --card-radius: 12px;
     --btn-radius: 8px;
+    --gap-xs: 0.5rem;
+    --gap-sm: 0.75rem;
+    --gap-md: 1.25rem;
+    --gap-lg: 1.75rem;
+    --gap-xl: 2.25rem;
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
     --shadow-hover: 0 10px 24px rgba(13, 110, 253, 0.14);
     --transition-base: all 0.25s ease;
-    --sticky-offset: 80px;
+    --sticky-offset: 84px;
 }
 
 /* ==========================================================================
-   2. CẤU TRÚC NỀN TẢNG (BASE LAYOUT)
+   2. CAU TRUC NEN TANG & CHONG TRAN NGANG (ANTI-OVERFLOW)
    ========================================================================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     font-family: var(--font-family-base);
     background-color: var(--light-bg);
@@ -37,117 +53,404 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    margin: 0;
 }
 
 main {
     flex: 1;
 }
 
-/* Đồng bộ màu chủ đạo theo biến CSS */
-.bg-theme-primary {
+img,
+svg,
+video,
+iframe {
+    max-width: 100%;
+}
+
+.nen-mau-chu-dao {
     background-color: var(--primary-color) !important;
 }
 
-.text-theme-primary {
+.chu-mau-chu-dao {
     color: var(--primary-color) !important;
 }
 
-.border-theme-primary {
+.vien-mau-chu-dao {
     border-color: var(--primary-color) !important;
 }
 
+.anh-logo-thuong-hieu {
+    height: 44px;
+    width: auto;
+}
+
+.anh-logo-chan-trang {
+    height: 46px;
+    width: auto;
+}
+
+.anh-banner-chinh {
+    max-height: 340px;
+    width: 100%;
+    object-fit: contain;
+}
+
 /* ==========================================================================
-   3. THẺ KHÓA HỌC & DANH MỤC (COURSE CARDS & BADGES)
+   3. BO CUC FLEXBOX MOT CHIEU (HEADER, NAVBAR, CARD, FILTER, FOOTER)
    ========================================================================== */
-.course-card {
+/* Header & Navbar Flexbox */
+.thanh-menu-dau-trang {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gap-md);
+}
+
+.nhom-nut-menu-phai {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-sm);
+    flex-wrap: wrap;
+}
+
+/* Hero Section Content & Buttons Flexbox */
+.noi-dung-banner-chinh {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: var(--gap-sm);
+}
+
+.nhom-nut-banner-chinh {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--gap-sm);
+}
+
+/* Section Header Flexbox */
+.tieu-de-khu-vuc-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--gap-md);
+    margin-bottom: 1.5rem;
+}
+
+/* Bo loc khoa hoc (Filter Sidebar Flexbox) */
+.thanh-bo-loc-ben {
+    border-radius: var(--card-radius);
+    background-color: var(--surface-bg);
+}
+
+.nhom-bo-loc-flex {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md);
+}
+
+.thanh-cong-cu-khoa-hoc {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--gap-md);
+    margin-bottom: 1.5rem;
+}
+
+/* The khoa hoc (Course Card Flexbox) */
+.the-khoa-hoc {
     border-radius: var(--card-radius);
     background-color: var(--surface-bg);
     overflow: hidden;
     transition: var(--transition-base);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
-.course-card:hover {
+.the-khoa-hoc:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-hover) !important;
 }
 
-.course-card img,
-.course-card-img {
-    height: 180px;
+.the-khoa-hoc img,
+.anh-the-khoa-hoc {
+    height: 185px;
+    width: 100%;
     object-fit: cover;
 }
 
-.detail-cover-img {
-    max-height: 380px;
-    object-fit: cover;
+.than-the-khoa-hoc {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.25rem;
+    gap: 0.45rem;
 }
 
-.filter-sidebar {
-    border-radius: var(--card-radius);
-    background-color: var(--surface-bg);
+.thong-tin-phu-khoa-hoc {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--gap-xs);
+    flex-wrap: wrap;
 }
 
-.category-pill {
+.chan-the-khoa-hoc {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.nhom-gia-khoa-hoc {
+    display: flex;
+    align-items: baseline;
+    gap: var(--gap-xs);
+    flex-wrap: wrap;
+}
+
+.nhom-nut-khoa-hoc {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xs);
+}
+
+/* Footer Flexbox */
+.bo-cuc-chan-trang {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--gap-xl);
+}
+
+.cot-thuong-hieu-chan-trang {
+    flex: 1 1 300px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+}
+
+.cot-lien-ket-chan-trang {
+    flex: 1 1 220px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xs);
+}
+
+.cot-ban-do-chan-trang {
+    flex: 1 1 340px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xs);
+}
+
+.nhom-mang-xa-hoi-chan-trang {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--gap-xs);
+}
+
+/* ==========================================================================
+   4. BO CUC CSS GRID HAI CHIEU (HERO, COURSES, DETAIL, DASHBOARD)
+   ========================================================================== */
+/* Hero Section Grid (2 cot tren Desktop) */
+.luoi-banner-chinh {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--gap-xl);
+    align-items: center;
+}
+
+/* Danh muc chuyen nganh Grid */
+.luoi-danh-muc {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+    gap: var(--gap-md);
+}
+
+.the-danh-muc {
     border-radius: var(--card-radius);
     transition: var(--transition-base);
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
-.category-pill:hover {
+.the-danh-muc:hover {
     background-color: var(--primary-light);
     border-color: var(--primary-color) !important;
 }
 
+/* Danh sach khoa hoc 4 cot tren Trang chu (Desktop: 4 cot) */
+.khung-khoa-hoc-4 {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--gap-md);
+}
+
+/* Danh sach khoa hoc 3 cot tren Trang Khoa hoc & Khoa hoc cua toi (Desktop: 3 cot) */
+.khung-khoa-hoc-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--gap-md);
+}
+
+/* Luoi khoa hoc thu gon 2 cot (Yeu thich & Da xem gan day) */
+.luoi-goi-y-ca-nhan {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--gap-xl);
+}
+
+.luoi-khoa-hoc-nho {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--gap-sm);
+}
+
+/* Bo cuc Trang Danh sach khoa hoc (Sidebar Bo loc + Luoi khoa hoc) */
+.luoi-trang-khoa-hoc {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: var(--gap-lg);
+    align-items: start;
+}
+
+/* Bo cuc Trang Chi tiet khoa hoc (Noi dung chinh + Tom tat dang ky) */
+.luoi-chi-tiet-khoa-hoc {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr);
+    gap: var(--gap-lg);
+    align-items: start;
+}
+
+/* Bo cuc Dashboard Hoc vien (Trang Ho so ca nhan) */
+.luoi-bang-dieu-khien-hoc-vien {
+    display: grid;
+    grid-template-columns: 340px minmax(0, 1fr);
+    gap: var(--gap-lg);
+    align-items: start;
+}
+
+.luoi-thong-ke-ho-so {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--gap-xs);
+    text-align: center;
+}
+
+/* Bo cuc Trang Quan tri (Admin Dashboard Grid) */
+.luoi-chi-so-quan-tri {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--gap-md);
+}
+
+.luoi-phan-tich-quan-tri {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--gap-md);
+}
+
+/* Bo cuc Trang Gioi thieu, Lien he, Gio hang & Thanh toan */
+.luoi-gioi-thieu {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--gap-xl);
+    align-items: center;
+}
+
+.luoi-gia-tri-cot-loi {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--gap-md);
+}
+
+.luoi-trang-lien-he {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--gap-xl);
+    align-items: stretch;
+}
+
+.luoi-trang-gio-hang {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(310px, 1fr);
+    gap: var(--gap-lg);
+    align-items: start;
+}
+
+.luoi-trang-thanh-toan {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(320px, 5fr);
+    gap: var(--gap-xl);
+    align-items: start;
+}
+
 /* ==========================================================================
-   4. TIỆN ÍCH THAY THẾ INLINE CSS (ZERO INLINE STYLE CLASSES)
+   5. TIEN ICH GIAO DIEN, BAN DO, TOAST & DANH GIA SAO
    ========================================================================== */
-/* Biểu tượng giỏ hàng rỗng hoặc trạng thái trống */
-.icon-empty-cart,
-.icon-empty-state {
+.anh-bia-chi-tiet {
+    max-height: 380px;
+    object-fit: cover;
+}
+
+.bieu-tuong-gio-hang-trong,
+.bieu-tuong-trang-thai-trong {
     font-size: 4rem;
 }
 
-/* Khung tóm tắt đơn hàng trượt theo màn hình */
-.sticky-summary,
-.sticky-sidebar {
+.khung-tom-tat-co-dinh,
+.thanh-ben-co-dinh {
     top: var(--sticky-offset);
 }
 
-/* Ảnh thu nhỏ trong bảng Giỏ hàng */
-.cart-item-img {
+.anh-san-pham-gio-hang {
     width: 72px;
     height: 52px;
     object-fit: cover;
 }
 
-/* Ảnh thu nhỏ trong trang Thanh toán và Quản trị */
-.checkout-item-img,
-.admin-thumb-img {
+.anh-san-pham-thanh-toan,
+.anh-thu-nho-quan-tri {
     width: 60px;
     height: 45px;
     object-fit: cover;
 }
 
-/* Giới hạn chiều rộng tiêu đề khóa học trong tóm tắt đơn hàng */
-.checkout-item-title {
+.ten-san-pham-thanh-toan {
     max-width: 190px;
 }
 
-/* Bản đồ Google Maps không viền */
-.map-iframe {
+.khung-nhung-ban-do {
     border: 0;
     width: 100%;
     height: 100%;
 }
 
-/* Ảnh mã QR thanh toán VietQR */
-.qr-code-img {
+.khung-ban-do-chan-trang {
+    height: 160px;
+    border-radius: var(--card-radius);
+    overflow: hidden;
+}
+
+.anh-ma-qr-thanh-toan {
     max-width: 220px;
     border-radius: var(--card-radius);
 }
 
-/* Khung mã xác thực Captcha trang Đăng ký */
-.captcha-box {
+.hop-ma-xac-thuc {
     letter-spacing: 6px;
     font-family: 'Courier New', Courier, monospace;
     background-color: var(--primary-light);
@@ -156,10 +459,44 @@ main {
     border-radius: var(--btn-radius);
 }
 
-/* ==========================================================================
-   5. HỒ SƠ CÁ NHÂN, HỌC TẬP & TRANG QUẢN TRỊ (PROFILE, LEARNING, ADMIN)
-   ========================================================================== */
-.avatar-circle {
+.khung-thong-bao-noi {
+    position: fixed;
+    top: 82px;
+    right: 20px;
+    z-index: 1090;
+    width: 350px;
+    max-width: 92vw;
+}
+
+.muc-thong-bao-noi {
+    background-color: var(--surface-bg);
+    border-radius: var(--card-radius);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-left: 5px solid var(--primary-color);
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    transition: var(--transition-base);
+}
+
+.thong-bao-thanh-cong { border-left-color: var(--success-color); }
+.thong-bao-loi  { border-left-color: var(--accent-color); }
+.thong-bao-canh-bao { border-left-color: var(--warning-color); }
+.thong-bao-thong-tin    { border-left-color: var(--info-color); }
+
+.nut-chon-sao-danh-gia {
+    background: transparent;
+    border: none;
+    font-size: 1.75rem;
+    padding: 0 4px;
+    cursor: pointer;
+    transition: var(--transition-base);
+}
+
+.nut-chon-sao-danh-gia:hover {
+    transform: scale(1.15);
+}
+
+.anh-dai-dien-tron {
     width: 90px;
     height: 90px;
     border-radius: 50%;
@@ -172,16 +509,22 @@ main {
     font-weight: 700;
 }
 
-.stat-card {
+.the-thong-ke {
     border-radius: var(--card-radius);
     transition: var(--transition-base);
 }
 
-.stat-card:hover {
+.the-thong-ke:hover {
     transform: translateY(-3px);
 }
 
-.admin-nav-pills .nav-link {
+.thanh-tab-quan-tri {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-xs);
+}
+
+.thanh-tab-quan-tri .nav-link {
     border-radius: var(--btn-radius);
     color: var(--text-main);
     font-weight: 600;
@@ -189,31 +532,131 @@ main {
     transition: var(--transition-base);
 }
 
-.admin-nav-pills .nav-link.active {
+.thanh-tab-quan-tri .nav-link.active {
     background-color: var(--primary-color);
     color: var(--surface-bg);
 }
 
-.progress-thin {
-    height: 8px;
+.thanh-tien-trinh-mong {
+    height: 10px;
 }
 
-.progress-bar-25 {
-    width: 25%;
-}
+.thanh-tien-trinh-0   { width: 0%; }
+.thanh-tien-trinh-10  { width: 10%; }
+.thanh-tien-trinh-20  { width: 20%; }
+.thanh-tien-trinh-25  { width: 25%; }
+.thanh-tien-trinh-30  { width: 30%; }
+.thanh-tien-trinh-40  { width: 40%; }
+.thanh-tien-trinh-50  { width: 50%; }
+.thanh-tien-trinh-60  { width: 60%; }
+.thanh-tien-trinh-70  { width: 70%; }
+.thanh-tien-trinh-75  { width: 75%; }
+.thanh-tien-trinh-80  { width: 80%; }
+.thanh-tien-trinh-90  { width: 90%; }
+.thanh-tien-trinh-100 { width: 100%; }
 
-.progress-bar-50 {
-    width: 50%;
-}
-
-.progress-bar-75 {
-    width: 75%;
-}
-
-.progress-bar-100 {
-    width: 100%;
-}
-
-.text-justify {
+.chu-can-deu {
     text-align: justify;
+}
+
+/* ==========================================================================
+   6. QUY CHUAN RESPONSIVE DA THIET BI (CSS MEDIA QUERIES)
+   ========================================================================== */
+/* Man hinh Laptop nho (< 1200px): Danh sach 4 cot chuyen sang 3 cot */
+@media (max-width: 1199.98px) {
+    .khung-khoa-hoc-4 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .luoi-chi-so-quan-tri {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Man hinh Tablet (768px - 991.98px): Danh sach khoa hoc 2 cot, thu gon Sidebar */
+@media (max-width: 991.98px) {
+    .luoi-banner-chinh,
+    .luoi-trang-khoa-hoc,
+    .luoi-chi-tiet-khoa-hoc,
+    .luoi-bang-dieu-khien-hoc-vien,
+    .luoi-phan-tich-quan-tri,
+    .luoi-gioi-thieu,
+    .luoi-trang-lien-he,
+    .luoi-trang-gio-hang,
+    .luoi-trang-thanh-toan,
+    .luoi-goi-y-ca-nhan {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .khung-khoa-hoc-4,
+    .khung-khoa-hoc-3,
+    .luoi-gia-tri-cot-loi {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .noi-dung-banner-chinh {
+        align-items: center;
+        text-align: center;
+    }
+
+    .nhom-nut-banner-chinh {
+        justify-content: center;
+    }
+
+    .khung-tom-tat-co-dinh,
+    .thanh-ben-co-dinh {
+        position: static !important;
+    }
+}
+
+/* Man hinh Dien thoai Mobile (< 768px): Danh sach khoa hoc 1 cot, chong tran tuyet doi */
+@media (max-width: 767.98px) {
+    .anh-logo-thuong-hieu {
+        height: 34px;
+    }
+
+    .thanh-menu-dau-trang {
+        gap: 8px;
+    }
+
+    .nhom-nut-menu-phai {
+        flex-wrap: wrap;
+    }
+
+    .khung-khoa-hoc-4,
+    .khung-khoa-hoc-3,
+    .luoi-khoa-hoc-nho,
+    .luoi-chi-so-quan-tri,
+    .luoi-gia-tri-cot-loi,
+    .luoi-danh-muc {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .tieu-de-khu-vuc-flex,
+    .thanh-cong-cu-khoa-hoc {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .khung-thong-bao-noi {
+        right: 12px;
+        left: 12px;
+        width: auto;
+    }
+}
+
+@media print {
+    header, nav, footer, .navbar, .btn, .modal-header .btn-close, .modal-footer {
+        display: none !important;
+    }
+    body * {
+        visibility: hidden;
+    }
+    #hop-thoai-chung-nhan, #hop-thoai-chung-nhan * {
+        visibility: visible;
+    }
+    #hop-thoai-chung-nhan {
+        position: static;
+        display: block;
+    }
 }

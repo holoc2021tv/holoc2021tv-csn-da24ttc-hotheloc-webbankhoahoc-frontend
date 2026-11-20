@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" rx="20" fill="url(#bg3)"/>
+  <rect x="34" y="34" width="175" height="34" rx="17" fill="#ef4444"/>
+  <circle cx="54" cy="51" r="6" fill="#ffffff"/>
+  <text x="70" y="56" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">LIVE SHOW TUẦN NÀY</text>
+  <text x="34" y="122" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="800" fill="#ffffff">Hỏi Đáp &amp; Thực Chiến</text>
+  <text x="34" y="162" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="800" fill="#facc15">Xây Dựng Web Bán Hàng</text>
+  <text x="34" y="206" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#cbd5e1">Thứ 7 hàng tuần • 19:30 – 21:30 cùng đội ngũ ThS. Giảng viên</text>
+  <rect x="34" y="240" width="250" height="74" rx="14" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="54" y="270" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#38bdf8">Nội dung trực tiếp:</text>
+  <text x="54" y="295" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#e2e8f0">Review code • Tối ưu UX • Giải đáp Q&amp;A</text>
+  <rect x="310" y="240" width="290" height="74" rx="14" fill="#1e293b" stroke="#facc15" stroke-width="1.5"/>
+  <text x="330" y="270" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#facc15">Quà tặng học viên tham gia:</text>
+  <text x="330" y="295" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#e2e8f0">Mã giảm giá TVU2026 (-10%) &amp; Tài liệu</text>
+</svg>

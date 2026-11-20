@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 52" width="240" height="52">
+  <defs>
+    <linearGradient id="eduGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d6efd"/>
+      <stop offset="100%" stop-color="#6610f2"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="4" width="44" height="44" rx="12" fill="url(#eduGrad)"/>
+  <polygon points="24,12 39,19 24,26 9,19" fill="#ffffff"/>
+  <path d="M14,23 L14,31 C14,34 19,36 24,36 C29,36 34,34 34,31 L34,23 L24,28 Z" fill="#dbeafe"/>
+  <path d="M38,20 L38,31" stroke="#ffd43b" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="38" cy="32.5" r="2.2" fill="#ffd43b"/>
+  <text x="56" y="28" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#0d6efd">Edu<tspan fill="#1e293b">Courses</tspan></text>
+  <text x="56" y="43" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.4" fill="#64748b">HỌC TRỰC TUYẾN THỰC CHIẾN</text>
+</svg>
